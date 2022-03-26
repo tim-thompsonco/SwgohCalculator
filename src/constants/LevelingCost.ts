@@ -1,3 +1,5 @@
+// The value for each level indicates the cost to go to the next level
+// IE 3: 426 means the cost to go from lvl 3 to 4 is 426 credits
 export const levelingCosts: Record<number, number> = {
     1: 213,
     2: 213,
