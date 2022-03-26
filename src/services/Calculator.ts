@@ -6,5 +6,5 @@ export const calculateNextLevelCost = (currentLevel: number): number => {
         return 0;
     }
 
-    return levelingCosts[currentLevel + 1];
+    return levelingCosts[currentLevel];
 }
