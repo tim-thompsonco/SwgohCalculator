@@ -50,3 +50,19 @@ test('Leveling cost is computed correctly for level 70 to 85', () => {
   
   expect(totalCost).toBe(3855300);
 });
+
+test('Leveling cost is computed correctly when starting and desired level are the same', () => {
+  const startingLevel = 70;
+  const desiredLevel = 70;
+  const totalCost = calculateLevelingCost(startingLevel, desiredLevel);
+    
+  expect(totalCost).toBe(0);
+});
+
+test('A starting level greater than desired level throws an error', () => {
+  const startingLevel = 71;
+  const desiredLevel = 70;
+      
+  expect(() => calculateLevelingCost(startingLevel, desiredLevel))
+    .toThrow('Starting level cannot be greater than desired level.');
+});

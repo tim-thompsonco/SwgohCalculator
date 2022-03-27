@@ -29,7 +29,7 @@
         "indent": ["error", 2],
         "keyword-spacing": ["error", { "before": true, "after": true }],
         "linebreak-style": ["error", "unix"],
-        "max-len": ["error", 90],
+        "max-len": ["error", 100],
         "no-console": "warn",
         "no-continue": "warn",
         "no-duplicate-imports": "error",
