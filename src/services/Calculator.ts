@@ -2,16 +2,6 @@ import { levelingCosts } from '../constants/LevelingCost';
 import { maxLevel } from '../constants/LevelInfo';
 import { validatePlayerLevel } from './Validation';
 
-export const calculateNextLevelCost = (currentLevel: number): number => {
-  validatePlayerLevel(currentLevel);
-
-  if (currentLevel === maxLevel) {
-    return 0;
-  }
-
-  return levelingCosts[currentLevel];
-};
-
 export const calculateLevelingCost = (startingLevel: number, desiredLevel: number) => {
   validatePlayerLevel(startingLevel);
   validatePlayerLevel(desiredLevel);
@@ -23,4 +13,14 @@ export const calculateLevelingCost = (startingLevel: number, desiredLevel: numbe
   }
 
   return totalCost;
+};
+
+export const calculateNextLevelCost = (currentLevel: number): number => {
+  validatePlayerLevel(currentLevel);
+  
+  if (currentLevel === maxLevel) {
+    return 0;
+  }
+  
+  return levelingCosts[currentLevel];
 };

@@ -21,10 +21,28 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "block-spacing": ["error"],
+        "brace-style": ["error", "stroustrup"],
+        "camelcase": "error",
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "func-style": ["error", "expression"],
         "indent": ["error", 2],
+        "keyword-spacing": ["error", { "before": true, "after": true }],
         "linebreak-style": ["error", "unix"],
+        "max-len": ["error", 90],
+        "no-console": "warn",
+        "no-continue": "warn",
+        "no-duplicate-imports": "error",
+        "no-else-return": "error",
+        "no-nested-ternary": "error",
+        "no-unreachable-loop": "error",
+        "object-curly-spacing": ["error", "always"],
+        "prefer-destructuring": ["error", { "object": true, "array": true }],
+        "prefer-spread": "error",
         "quotes": ["error", "single"],
+        "require-atomic-updates": "error",
         "semi": ["error", "always"],
-        "max-len": ["error", 90]
+        "sort-imports": ["error"],
+        "space-before-blocks": ["error", "always"]
     }
 }
