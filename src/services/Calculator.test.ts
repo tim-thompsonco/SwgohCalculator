@@ -1,11 +1,5 @@
-import { calculateNextLevelCost } from './Calculator';
-
-test('An invalid player level less than 1 throws an exception', () => {
-  const playerLevel = 0;
-
-  expect(() => calculateNextLevelCost(playerLevel))
-    .toThrow('Current level is invalid. Level must be at least 1.');
-});
+import { calculateNextLevelCost, calculateLevelingCost } from './Calculator';
+import { minLevel, maxLevel } from '../constants/LevelInfo';
 
 test('The correct cost is returned to go from level 1 to 2', () => {
   const playerLevel = 1;
@@ -35,9 +29,24 @@ test('A cost of 0 is returned when player is at max level of 85', () => {
   expect(nextLevelCost).toBe(0);
 });
 
-test('An invalid player level greater than 85 throws an exception', () => {
-  const playerLevel = 86;
+test('Leveling cost is computed correctly for min level to max level', () => {
+  const totalCost = calculateLevelingCost(minLevel, maxLevel);
 
-  expect(() => calculateNextLevelCost(playerLevel))
-    .toThrow('Current level is invalid. Level must be less than or equal to 85.');
+  expect(totalCost).toBe(6269655);
+});
+
+test('Leveling cost is computed correctly for level 1 to 60', () => {
+  const startingLevel = 1;
+  const desiredLevel = 60;
+  const totalCost = calculateLevelingCost(startingLevel, desiredLevel);
+  
+  expect(totalCost).toBe(1100784);
+});
+
+test('Leveling cost is computed correctly for level 70 to 85', () => {
+  const startingLevel = 70;
+  const desiredLevel = 85;
+  const totalCost = calculateLevelingCost(startingLevel, desiredLevel);
+  
+  expect(totalCost).toBe(3855300);
 });
