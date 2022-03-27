@@ -22,6 +22,7 @@
     ],
     "rules": {
         "block-spacing": ["error"],
+        "brace-style": ["error", "stroustrup"],
         "camelcase": "error",
         "comma-spacing": ["error", { "before": false, "after": true }],
         "func-style": ["error", "expression"],
@@ -35,6 +36,7 @@
         "no-else-return": "error",
         "no-nested-ternary": "error",
         "no-unreachable-loop": "error",
+        "object-curly-spacing": ["error", "always"],
         "prefer-destructuring": ["error", { "object": true, "array": true }],
         "prefer-spread": "error",
         "quotes": ["error", "single"],
