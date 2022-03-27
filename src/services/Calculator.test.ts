@@ -1,5 +1,5 @@
-import { calculateNextLevelCost, calculateLevelingCost } from './Calculator';
-import { minLevel, maxLevel } from '../constants/LevelInfo';
+import { calculateLevelingCost, calculateNextLevelCost } from './Calculator';
+import { maxLevel, minLevel } from '../constants/LevelInfo';
 
 test('The correct cost is returned to go from level 1 to 2', () => {
   const playerLevel = 1;

@@ -1,4 +1,4 @@
-import { minLevel, maxLevel } from '../constants/LevelInfo';
+import { maxLevel, minLevel } from '../constants/LevelInfo';
 
 export const validatePlayerLevel = (currentLevel: number): void | Error => {
   if (currentLevel < minLevel) {
