@@ -1,0 +1,48 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "block-spacing": ["error"],
+        "brace-style": ["error", "stroustrup"],
+        "camelcase": "error",
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "func-style": ["error", "expression"],
+        "indent": ["error", 2],
+        "keyword-spacing": ["error", { "before": true, "after": true }],
+        "linebreak-style": ["error", "unix"],
+        "max-len": ["error", 90],
+        "no-console": "warn",
+        "no-continue": "warn",
+        "no-duplicate-imports": "error",
+        "no-else-return": "error",
+        "no-nested-ternary": "error",
+        "no-unreachable-loop": "error",
+        "object-curly-spacing": ["error", "always"],
+        "prefer-destructuring": ["error", { "object": true, "array": true }],
+        "prefer-spread": "error",
+        "quotes": ["error", "single"],
+        "require-atomic-updates": "error",
+        "semi": ["error", "always"],
+        "sort-imports": ["error"],
+        "space-before-blocks": ["error", "always"]
+    }
+}
