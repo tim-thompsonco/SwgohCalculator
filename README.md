@@ -1,9 +1,26 @@
-# Getting Started with Create React App
+<h2>Swgoh Calculator</h2>
+<p>This is a React app bootstrapped with CRA to provide a calculator for computing the leveling cost of characters in the Star Wars: Game of Heroes mobile game.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2>Future Plans</h2>
+<p>The next step will be to add the same computation for upgrading character stars / rarity. After that, I will provide cookie support to remember the settings for each user so that they do not need to re-enter settings. Once that has been done, I will create a separate microservice API that integrates with a 3rd party API to accept a player's ally code and query the 3rd party API to retrieve character information for the player. This information will be used to fill in existing level and rarity / stars for each character for a more tailored computation.</p>
 
-## Available Scripts
+<h2>Build Pipeline</h2>
+<p>QA environment points to https://swgohcalculator-qa.herokuapp.com.</p>
+<p>Production environment points to https://swgohcalculator.herokuapp.com.</p>
+<p>For all code changes, a branch is cut off QA for each ticket, which is then squashed and merged into QA once the ticket is complete. The QA environment is then tested first prior to merging QA into production to avoid downtime from breaking changes.</p>
 
+<h2>Built With</h2>
+  <ul>
+    <li>React
+    <li>TypeScript
+    <li>JavaScript
+    <li>Heroku
+  </ul>
+
+<h2>Authors</h2>
+<p>Tim Thompson</p>
+
+<h2>Available Scripts</h2>
 In the project directory, you can run:
 
 ### `npm start`
@@ -38,9 +55,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
