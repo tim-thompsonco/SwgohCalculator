@@ -40,6 +40,8 @@
         "prefer-destructuring": ["error", { "object": true, "array": true }],
         "prefer-spread": "error",
         "quotes": ["error", "single"],
+        "react/jsx-indent": ["error", 2],
+        "react/jsx-indent-props": ["error", 2],
         "require-atomic-updates": "error",
         "semi": ["error", "always"],
         "sort-imports": ["error"],
