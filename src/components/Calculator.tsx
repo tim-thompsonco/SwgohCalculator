@@ -35,10 +35,8 @@ const Calculator: React.FC<CalculatorProps> = ({ label }) => {
         <Select
           value={level.toString()}
           onChange={handleChange}
-          //variant={'outlined'}
+          variant={'outlined'}
           sx={{ 
-            bgcolor: 'background.paper',
-            //color: 'secondary',
             width: 100,
             height: 50,
             marginX: 2,
