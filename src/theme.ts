@@ -1,5 +1,4 @@
-import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { createTheme } from '@material-ui/core';
 
 const COLORS = {
   starWarsGold: '#ffe81f',
@@ -10,27 +9,17 @@ const COLORS = {
 const theme = createTheme({
   palette: {
     primary: {
-      main: COLORS.starWarsGold
+      main: COLORS.starWarsGold,
+    },
+    secondary: {
+      main: COLORS.darkGrey
     },
     background: {
       default: COLORS.black,
       paper: COLORS.darkGrey
     },
     text: {
-      primary: COLORS.starWarsGold
-    },
-    error: {
-      main: red.A400,
-    },
-  },
-  components: {
-    MuiSelect: {
-      styleOverrides: {
-        outlined: {
-          backgroundColor: COLORS.darkGrey,
-          border: `2 solid ${COLORS.starWarsGold}`,
-        }
-      }
+      primary: COLORS.starWarsGold,
     }
   }
 });
