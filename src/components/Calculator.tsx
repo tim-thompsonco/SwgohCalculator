@@ -1,28 +1,21 @@
-import { Box, FormControl, Grid, NativeSelect, Typography, makeStyles } from '@material-ui/core';
+import { Box, FormControl, MenuItem, Select, Typography, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import { levelingCosts } from '../constants/LevelingCost';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-  },
   formControl: {
     backgroundColor: theme.palette.secondary.main,
-    margin: theme.spacing(1),
-    minWidth: 50,
+    margin: theme.spacing(1)
   },
   levelLabel: {
     color: theme.palette.primary.main,
     fontSize: 18,
   },
-  levelLabelContainer: {
-    justifyItems: 'center'
-  },
   levelSelect: {
-    marginTop: theme.spacing(1),
-    height: theme.spacing(4),
-    width: theme.spacing(12)
+    background: theme.palette.secondary.main,
+    paddingBottom: theme.spacing(2),
+    height: theme.spacing(3),
+    width: theme.spacing(8)
   }
 }));
 
@@ -46,22 +39,20 @@ const Calculator: React.FC<CalculatorProps> = ({ label }) => {
       display="flex"
       alignItems="center"
     >
-      <Typography className={classes.levelLabel} align={'center'}>
+      <Typography className={classes.levelLabel}>
         {label}
       </Typography>
-      <FormControl className={classes.formControl}>
-        <NativeSelect
-          inputProps={{
-            name: 'starting-level',
-            id: 'starting-level-select',
-          }}
-          onChange={handleChange}
+      <FormControl variant="filled" className={classes.formControl}>
+        <Select
+          className={classes.levelSelect}
+          id="starting-level-select"
           value={level}
+          onChange={handleChange}
         >
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={30}>30</option>
-        </NativeSelect>
+          <MenuItem value={10}>10</MenuItem>
+          <MenuItem value={20}>20</MenuItem>
+          <MenuItem value={30}>30</MenuItem>
+        </Select>
       </FormControl>
     </Box>
   );
