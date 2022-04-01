@@ -34,7 +34,6 @@ const Calculator: React.FC<CalculatorProps> = ({ label }) => {
   };
 
   return (
-    
     <Box
       display="flex"
       alignItems="center"
@@ -42,16 +41,17 @@ const Calculator: React.FC<CalculatorProps> = ({ label }) => {
       <Typography className={classes.levelLabel}>
         {label}
       </Typography>
-      <FormControl variant="filled" className={classes.formControl}>
+      <FormControl variant="filled" className={classes.formControl} size={'small'}>
         <Select
           className={classes.levelSelect}
           id="starting-level-select"
+          defaultValue={1}
           value={level}
           onChange={handleChange}
         >
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={30}>30</MenuItem>
+          {Object.keys(levelingCosts).map((level: string) => {
+            return <MenuItem key={level} value={level}>{level}</MenuItem>;
+          })}
         </Select>
       </FormControl>
     </Box>
