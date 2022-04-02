@@ -1,5 +1,5 @@
-import { levelingCosts } from '../constants/LevelingCost';
 import { maxLevel } from '../constants/LevelInfo';
+import { levelingCosts } from '../constants/LevelingCost';
 import { validatePlayerLevel } from './Validation';
 
 export const calculateLevelingCost = (startingLevel: number, desiredLevel: number): number => {
