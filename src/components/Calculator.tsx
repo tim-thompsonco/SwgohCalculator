@@ -10,19 +10,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center'
   },
-  formControl: {
-    backgroundColor: theme.palette.secondary.main,
-    margin: theme.spacing(1, 0)
-  },
   levelLabel: {
     color: theme.palette.primary.main,
     fontSize: 18,
-  },
-  levelSelect: {
-    background: theme.palette.secondary.main,
-    paddingBottom: theme.spacing(2),
-    height: theme.spacing(3),
-    width: theme.spacing(8)
   },
   rightAlignItem: {
     justifyItems: 'flex-end' 
