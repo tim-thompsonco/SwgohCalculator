@@ -3,7 +3,8 @@ import React from 'react';
 
 import Calculator from './Calculator';
 
-test('Renders CalculatorSelect component', () => {
-
-  render(<Calculator />);
+describe('Calculator component', () => {
+  test('Smoke test', () => {
+    render(<Calculator />);
+  });
 });

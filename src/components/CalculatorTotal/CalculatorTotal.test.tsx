@@ -3,11 +3,13 @@ import React from 'react';
 
 import CalculatorTotal from './CalculatorTotal';
 
-test('Renders CalculatorTotal component', () => {
-  render(
-    <CalculatorTotal 
-      totalCostFormattedValue={'1,000'}
-      totalCostLabel={'Test Label'}
-    />
-  );
+describe('CalculatorTotal component', () => {
+  test('Smoke test', () => {
+    render(
+      <CalculatorTotal 
+        totalCostFormattedValue={'1,000'}
+        totalCostLabel={'Test Label'}
+      />
+    );
+  });
 });

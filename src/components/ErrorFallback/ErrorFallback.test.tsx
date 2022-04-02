@@ -3,11 +3,13 @@ import React from 'react';
 
 import ErrorFallback from './ErrorFallback';
 
-test('Renders CalculatorTotal component', () => {
-  const mockError = new Error();
-  const mockResetErrorBoundary = jest.fn();
-
-  render(
-    <ErrorFallback error={mockError} resetErrorBoundary={mockResetErrorBoundary} />
-  );
+describe('ErrorFallback component', () => {
+  test('Smoke test', () => {
+    const mockError = new Error();
+    const mockResetErrorBoundary = jest.fn();
+      
+    render(
+      <ErrorFallback error={mockError} resetErrorBoundary={mockResetErrorBoundary} />
+    );
+  });
 });
