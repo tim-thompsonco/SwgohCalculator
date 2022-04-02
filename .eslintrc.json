@@ -18,8 +18,7 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint",
-        "simple-import-sort"
+        "@typescript-eslint"
     ],
     "rules": {
         "block-spacing": ["error"],
@@ -38,7 +37,7 @@
         "no-else-return": "error",
         "no-nested-ternary": "error",
         "no-unreachable-loop": "error",
-        "object-curly-newline": ["error", "always"],
+        "object-curly-newline": ["error", { "multiline": true, "minProperties": 3 }],
         "object-curly-spacing": ["error", "always"],
         "one-var-declaration-per-line": ["error", "always"],
         "prefer-destructuring": ["error", { "object": true, "array": true }],
@@ -56,8 +55,7 @@
         "react/jsx-space-before-closing": [1, "always"],
         "require-atomic-updates": "error",
         "semi": ["error", "always"],
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error",
+        "sort-imports": ["error"],
         "space-before-blocks": ["error", "always"]
     }
 }
