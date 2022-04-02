@@ -1,14 +1,11 @@
-import { Grid, makeStyles, Modal, Typography } from '@material-ui/core';
+import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { FallbackProps } from 'react-error-boundary';
 
-const useStyles = makeStyles(theme => ({
-  errorModal: {
+const useStyles = makeStyles(() => ({
+  errorContainer: {
     alignItems: 'center',
-    backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    width: '20vw',
-    height: '20vh'
   }
 }));
 
@@ -16,26 +13,28 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) =
   const classes = useStyles();
 
   return (
-    <Modal
-      aria-describedby="modal-modal-description"
-      aria-labelledby="modal-modal-title"
-      className={classes.errorModal}
-      onClose={resetErrorBoundary}
-      open={true}
+    <Grid 
+      className={classes.errorContainer}
+      container
+      direction={'column'}
     >
-      <Grid container spacing={2}>
-        <Grid item>
-          <Typography component="h4" id="error-message-display">
-            {error.message}
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography component="h5" id="error-message-display">
-            {'Click to continue'}
-          </Typography>
-        </Grid>
+      <Grid item xs={12}>
+        <Typography component="h4" id="error-message-display">
+          {`I sense a great disturbance in the force. Specifically, ${error.message}`}
+        </Typography>
       </Grid>
-    </Modal>
+      <Grid item xs={12}>
+        <img src={'assets/images/death-star.jpg'} />
+      </Grid>
+      <Grid item xs={12}>
+        <Button 
+          color={'primary'}
+          onClick={resetErrorBoundary}
+          variant={'contained'}
+        >Home
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 
