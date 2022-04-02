@@ -9,17 +9,17 @@ const COLORS = {
 const theme = createTheme({
   palette: {
     primary: {
-      main: COLORS.starWarsGold,
+      main: COLORS.starWarsGold, 
     },
     secondary: {
-      main: COLORS.darkGrey
+      main: COLORS.darkGrey 
     },
     background: {
       default: COLORS.black,
       paper: COLORS.darkGrey
     },
     text: {
-      primary: COLORS.starWarsGold,
+      primary: COLORS.starWarsGold, 
     }
   }
 });

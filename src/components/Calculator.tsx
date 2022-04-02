@@ -1,4 +1,6 @@
-import { FormControl, Grid, MenuItem, Select, Typography, makeStyles } from '@material-ui/core';
+import {
+  FormControl, Grid, MenuItem, Select, Typography, makeStyles 
+} from '@material-ui/core';
 import React, { ChangeEvent, Fragment, useState } from 'react';
 import { calculateLevelingCost } from '../services/Calculator';
 import { levelingCosts } from '../constants/LevelingCost';
@@ -24,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(8)
   },
   rightAlignItem: {
-    justifyItems: 'flex-end'
+    justifyItems: 'flex-end' 
   }
 }));
 
