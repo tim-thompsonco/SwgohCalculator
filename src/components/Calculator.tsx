@@ -1,5 +1,5 @@
 import { Box, FormControl, MenuItem, Select, Typography, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { levelingCosts } from '../constants/LevelingCost';
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +27,7 @@ const Calculator: React.FC<CalculatorProps> = ({ label }) => {
   const classes = useStyles();
   const [level, setLevel] = useState(1);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
     const newLevel = Number(event.target.value);
 
     setLevel(newLevel);
