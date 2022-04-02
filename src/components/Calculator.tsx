@@ -2,6 +2,7 @@ import { FormControl, Grid, MenuItem, Select, Typography, makeStyles } from '@ma
 import React, { ChangeEvent, Fragment, useState } from 'react';
 import { calculateLevelingCost } from '../services/Calculator';
 import { levelingCosts } from '../constants/LevelingCost';
+import numeral from 'numeral';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     backgroundColor: theme.palette.secondary.main,
-    margin: theme.spacing(1)
+    margin: theme.spacing(1, 0)
   },
   levelLabel: {
     color: theme.palette.primary.main,
@@ -53,7 +54,7 @@ const Calculator: React.FC = () => {
           </Typography>
         </Grid>
         <Grid item xs={1} className={classes.rightAlignItem}>
-          <FormControl variant="filled" className={classes.formControl} size={'small'}>
+          <FormControl variant="filled" className={classes.formControl}>
             <Select
               className={classes.levelSelect}
               id="starting-level-select"
@@ -75,7 +76,7 @@ const Calculator: React.FC = () => {
           </Typography>
         </Grid>
         <Grid item xs={1} className={classes.rightAlignItem}>
-          <FormControl variant="filled" className={classes.formControl} size={'small'}>
+          <FormControl variant="filled" className={classes.formControl}>
             <Select
               className={classes.levelSelect}
               id="desired-level-select"
@@ -98,7 +99,7 @@ const Calculator: React.FC = () => {
         </Grid>
         <Grid item xs={1} className={classes.rightAlignItem}>
           <Typography className={classes.levelLabel}>
-            {calculateLevelingCost(startingLevel, desiredLevel)}
+            {numeral(calculateLevelingCost(startingLevel, desiredLevel)).format('0,0')}
           </Typography>
         </Grid>
       </Grid>
