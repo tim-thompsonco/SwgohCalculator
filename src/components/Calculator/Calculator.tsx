@@ -1,8 +1,7 @@
+import { CalculatorSelect, CalculatorTotal } from '../index';
 import React, { ChangeEvent, Fragment, useState } from 'react';
-import CalculatorSelect from './CalculatorSelect';
-import CalculatorTotal from './CalculatorTotal';
-import { calculateLevelingCost } from '../services/Calculator';
-import { levelingCosts } from '../constants/LevelingCost';
+import { calculateLevelingCost } from '../../services/Calculator';
+import { levelingCosts } from '../../constants/LevelingCost';
 import numeral from 'numeral';
 
 const Calculator: React.FC = () => {

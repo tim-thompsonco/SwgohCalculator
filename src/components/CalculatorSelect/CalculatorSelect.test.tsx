@@ -1,6 +1,6 @@
 import CalculatorSelect from './CalculatorSelect';
 import React from 'react';
-import { levelingCosts } from '../constants/LevelingCost';
+import { levelingCosts } from '../../constants/LevelingCost';
 import { render } from '@testing-library/react';
 
 test('Renders CalculatorSelect component', () => {
