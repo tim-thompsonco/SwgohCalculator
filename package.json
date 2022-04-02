@@ -21,6 +21,13 @@
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
+  "jest": {
+    "coveragePathIgnorePatterns" : [
+      "index.tsx",
+      "theme.ts",
+      "src/components/index.ts"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
