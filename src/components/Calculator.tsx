@@ -1,8 +1,13 @@
-import { Box, FormControl, MenuItem, Select, Typography, makeStyles } from '@material-ui/core';
-import React, { ChangeEvent, useState } from 'react';
+import { FormControl, Grid, MenuItem, Select, Typography, makeStyles } from '@material-ui/core';
+import React, { ChangeEvent, Fragment, useState } from 'react';
+import { calculateLevelingCost } from '../services/Calculator';
 import { levelingCosts } from '../constants/LevelingCost';
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   formControl: {
     backgroundColor: theme.palette.secondary.main,
     margin: theme.spacing(1)
@@ -16,45 +21,88 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(2),
     height: theme.spacing(3),
     width: theme.spacing(8)
+  },
+  rightAlignItem: {
+    justifyItems: 'flex-end'
   }
 }));
 
-interface CalculatorProps {
-    label: string
-}
-
-const Calculator: React.FC<CalculatorProps> = ({ label }) => {
+const Calculator: React.FC = () => {
   const classes = useStyles();
-  const [level, setLevel] = useState(1);
+  const [startingLevel, setStartingLevel] = useState(1);
+  const [desiredLevel, setDesiredLevel] = useState(1);
 
-  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
+  const handleStartingLevelChange = (event: ChangeEvent<{ value: unknown }>) => {
     const newLevel = Number(event.target.value);
 
-    setLevel(newLevel);
+    setStartingLevel(newLevel);
+  };
+
+  const handleDesiredLevelChange = (event: ChangeEvent<{ value: unknown }>) => {
+    const newLevel = Number(event.target.value);
+
+    setDesiredLevel(newLevel);
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-    >
-      <Typography className={classes.levelLabel}>
-        {label}
-      </Typography>
-      <FormControl variant="filled" className={classes.formControl} size={'small'}>
-        <Select
-          className={classes.levelSelect}
-          id="starting-level-select"
-          defaultValue={1}
-          value={level}
-          onChange={handleChange}
-        >
-          {Object.keys(levelingCosts).map((level: string) => {
-            return <MenuItem key={level} value={level}>{level}</MenuItem>;
-          })}
-        </Select>
-      </FormControl>
-    </Box>
+    <Fragment>
+      <Grid container className={classes.container}>
+        <Grid item xs={2}>
+          <Typography className={classes.levelLabel}>
+            {'Starting Level'}
+          </Typography>
+        </Grid>
+        <Grid item xs={1} className={classes.rightAlignItem}>
+          <FormControl variant="filled" className={classes.formControl} size={'small'}>
+            <Select
+              className={classes.levelSelect}
+              id="starting-level-select"
+              defaultValue={1}
+              value={startingLevel}
+              onChange={handleStartingLevelChange}
+            >
+              {Object.keys(levelingCosts).map((level: string) => {
+                return <MenuItem key={level} value={level}>{level}</MenuItem>;
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <Grid container className={classes.container}>
+        <Grid item xs={2}>
+          <Typography className={classes.levelLabel}>
+            {'Desired Level'}
+          </Typography>
+        </Grid>
+        <Grid item xs={1} className={classes.rightAlignItem}>
+          <FormControl variant="filled" className={classes.formControl} size={'small'}>
+            <Select
+              className={classes.levelSelect}
+              id="desired-level-select"
+              defaultValue={1}
+              value={desiredLevel}
+              onChange={handleDesiredLevelChange}
+            >
+              {Object.keys(levelingCosts).map((level: string) => {
+                return <MenuItem key={level} value={level}>{level}</MenuItem>;
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <Grid container className={classes.container}>
+        <Grid item xs={2}>
+          <Typography className={classes.levelLabel}>
+            {'Total Cost'}
+          </Typography>
+        </Grid>
+        <Grid item xs={1} className={classes.rightAlignItem}>
+          <Typography className={classes.levelLabel}>
+            {calculateLevelingCost(startingLevel, desiredLevel)}
+          </Typography>
+        </Grid>
+      </Grid>
+    </Fragment>
   );
 };
 

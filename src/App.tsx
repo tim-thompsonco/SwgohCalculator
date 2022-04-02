@@ -3,9 +3,7 @@ import React from 'react';
 
 const App = () => {
   return (
-    <Calculator 
-      label={'Starting Level'}
-    />
+    <Calculator />
   );
 };
 
