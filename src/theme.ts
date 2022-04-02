@@ -1,18 +1,27 @@
-import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { createTheme } from '@material-ui/core';
+
+const COLORS = {
+  starWarsGold: '#ffe81f',
+  black: '#000000',
+  darkGrey: '#404040'
+};
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ffe81f',
+      main: COLORS.starWarsGold, 
+    },
+    secondary: {
+      main: COLORS.darkGrey 
     },
     background: {
-      default: '#000000',
+      default: COLORS.black,
+      paper: COLORS.darkGrey
     },
-    error: {
-      main: red.A400,
-    },
-  },
+    text: {
+      primary: COLORS.starWarsGold, 
+    }
+  }
 });
 
 export default theme;

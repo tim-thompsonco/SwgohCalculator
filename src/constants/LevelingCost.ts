@@ -84,5 +84,6 @@ export const levelingCosts: Record<number, number> = {
   81: 312471,
   82: 326529,
   83: 340800,
-  84: 355071
+  84: 355071,
+  85: 0
 };
