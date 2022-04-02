@@ -7,7 +7,7 @@ import { CalculatorSelect, CalculatorTotal } from '../index';
 
 const Calculator: React.FC = () => {
   const [startingLevel, setStartingLevel] = useState(1);
-  const [desiredLevel, setDesiredLevel] = useState(1);
+  const [desiredLevel, setDesiredLevel] = useState(85);
 
   const handleStartingLevelChange = (event: ChangeEvent<{ value: unknown }>) => {
     const newLevel = Number(event.target.value);
