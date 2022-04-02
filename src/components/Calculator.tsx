@@ -1,26 +1,11 @@
-import { Grid, Typography, makeStyles } from '@material-ui/core';
 import React, { ChangeEvent, Fragment, useState } from 'react';
 import CalculatorSelect from './CalculatorSelect';
+import CalculatorTotal from './CalculatorTotal';
 import { calculateLevelingCost } from '../services/Calculator';
 import { levelingCosts } from '../constants/LevelingCost';
 import numeral from 'numeral';
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  levelLabel: {
-    color: theme.palette.primary.main,
-    fontSize: 18,
-  },
-  rightAlignItem: {
-    justifyItems: 'flex-end' 
-  }
-}));
-
 const Calculator: React.FC = () => {
-  const classes = useStyles();
   const [startingLevel, setStartingLevel] = useState(1);
   const [desiredLevel, setDesiredLevel] = useState(1);
 
@@ -50,18 +35,10 @@ const Calculator: React.FC = () => {
         upgradeLabel={'Desired Level'}
         upgradeValue={desiredLevel}
       />
-      <Grid className={classes.container} container>
-        <Grid item sm={2} xs={4}>
-          <Typography className={classes.levelLabel}>
-            {'Total Cost'}
-          </Typography>
-        </Grid>
-        <Grid className={classes.rightAlignItem} item sm={1} xs={2}>
-          <Typography className={classes.levelLabel}>
-            {numeral(calculateLevelingCost(startingLevel, desiredLevel)).format('0,0')}
-          </Typography>
-        </Grid>
-      </Grid>
+      <CalculatorTotal 
+        totalCostFormattedValue={numeral(calculateLevelingCost(startingLevel, desiredLevel)).format('0,0')}
+        totalCostLabel={'Total Cost'}
+      />
     </Fragment>
   );
 };
