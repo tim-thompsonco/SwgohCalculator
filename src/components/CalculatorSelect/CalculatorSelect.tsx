@@ -1,7 +1,8 @@
 import {
-  FormControl, Grid, MenuItem, Select, Typography, makeStyles 
-} from '@material-ui/core';
+  FormControl, Grid, makeStyles, 
+  MenuItem, Select, Typography } from '@material-ui/core';
 import React, { ChangeEvent } from 'react';
+
 import { convertLabelToId } from '../../utilities/Utilities';
 
 const useStyles = makeStyles(theme => ({

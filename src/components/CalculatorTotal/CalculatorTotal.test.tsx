@@ -1,6 +1,7 @@
-import CalculatorTotal from './CalculatorTotal';
-import React from 'react';
 import { render } from '@testing-library/react';
+import React from 'react';
+
+import CalculatorTotal from './CalculatorTotal';
 
 test('Renders CalculatorTotal component', () => {
   render(

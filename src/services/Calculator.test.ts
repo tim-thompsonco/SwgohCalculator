@@ -1,5 +1,5 @@
-import { calculateLevelingCost, calculateNextLevelCost } from './Calculator';
 import { maxLevel, minLevel } from '../constants/LevelInfo';
+import { calculateLevelingCost, calculateNextLevelCost } from './Calculator';
 
 describe('calculateNextLevelCost', () => {
   test('The correct cost is returned to go from level 1 to 2', () => {

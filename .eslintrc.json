@@ -18,7 +18,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "simple-import-sort"
     ],
     "rules": {
         "block-spacing": ["error"],
@@ -53,7 +54,8 @@
         "react/jsx-space-before-closing": [1, "always"],
         "require-atomic-updates": "error",
         "semi": ["error", "always"],
-        "sort-imports": ["error"],
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
         "space-before-blocks": ["error", "always"]
     }
 }
