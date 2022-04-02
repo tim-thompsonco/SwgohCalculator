@@ -1,10 +1,16 @@
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
+import ErrorFallback from './components/ErrorFallback/ErrorFallback';
 import { Calculator } from './components/index';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Calculator />
+    <ErrorBoundary 
+      FallbackComponent={ErrorFallback}
+    >
+      <Calculator />
+    </ErrorBoundary>
   );
 };
 
