@@ -1,5 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import App from './App';
+import CssBaseline from '@mui/material/CssBaseline';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import theme from './theme';
