@@ -40,12 +40,12 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
 
   return (
     <Grid className={classes.container} container>
-      <Grid item xs={2}>
+      <Grid item sm={2} xs={4}>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
-      <Grid className={classes.rightAlignItem} item xs={1}>
+      <Grid className={classes.rightAlignItem} item sm={1} xs={2}>
         <FormControl className={classes.formControl} variant="filled">
           <Select
             className={classes.levelSelect}

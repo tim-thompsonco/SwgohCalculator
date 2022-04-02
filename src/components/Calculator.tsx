@@ -51,12 +51,12 @@ const Calculator: React.FC = () => {
         upgradeValue={desiredLevel}
       />
       <Grid className={classes.container} container>
-        <Grid item xs={2}>
+        <Grid item sm={2} xs={4}>
           <Typography className={classes.levelLabel}>
             {'Total Cost'}
           </Typography>
         </Grid>
-        <Grid className={classes.rightAlignItem} item xs={1}>
+        <Grid className={classes.rightAlignItem} item sm={1} xs={2}>
           <Typography className={classes.levelLabel}>
             {numeral(calculateLevelingCost(startingLevel, desiredLevel)).format('0,0')}
           </Typography>
