@@ -1,7 +1,6 @@
-import {
-  FormControl, Grid, MenuItem, Select, Typography, makeStyles 
-} from '@material-ui/core';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 import React, { ChangeEvent, Fragment, useState } from 'react';
+import CalculatorSelect from './CalculatorSelect';
 import { calculateLevelingCost } from '../services/Calculator';
 import { levelingCosts } from '../constants/LevelingCost';
 import numeral from 'numeral';
@@ -49,50 +48,18 @@ const Calculator: React.FC = () => {
 
   return (
     <Fragment>
-      <Grid className={classes.container} container>
-        <Grid item xs={2}>
-          <Typography className={classes.levelLabel}>
-            {'Starting Level'}
-          </Typography>
-        </Grid>
-        <Grid className={classes.rightAlignItem} item xs={1}>
-          <FormControl className={classes.formControl} variant="filled">
-            <Select
-              className={classes.levelSelect}
-              defaultValue={1}
-              id="starting-level-select"
-              onChange={handleStartingLevelChange}
-              value={startingLevel}
-            >
-              {Object.keys(levelingCosts).map((level: string) => {
-                return <MenuItem key={level} value={level}>{level}</MenuItem>;
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-      </Grid>
-      <Grid className={classes.container} container>
-        <Grid item xs={2}>
-          <Typography className={classes.levelLabel}>
-            {'Desired Level'}
-          </Typography>
-        </Grid>
-        <Grid className={classes.rightAlignItem} item xs={1}>
-          <FormControl className={classes.formControl} variant="filled">
-            <Select
-              className={classes.levelSelect}
-              defaultValue={1}
-              id="desired-level-select"
-              onChange={handleDesiredLevelChange}
-              value={desiredLevel}
-            >
-              {Object.keys(levelingCosts).map((level: string) => {
-                return <MenuItem key={level} value={level}>{level}</MenuItem>;
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-      </Grid>
+      <CalculatorSelect 
+        handleUpgrade={handleStartingLevelChange}
+        upgradeCosts={levelingCosts}
+        upgradeLabel={'Starting Level'}
+        upgradeValue={startingLevel}
+      />
+      <CalculatorSelect 
+        handleUpgrade={handleDesiredLevelChange}
+        upgradeCosts={levelingCosts}
+        upgradeLabel={'Desired Level'}
+        upgradeValue={desiredLevel}
+      />
       <Grid className={classes.container} container>
         <Grid item xs={2}>
           <Typography className={classes.levelLabel}>
