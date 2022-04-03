@@ -1,4 +1,5 @@
 import {
+  Box,
   FormControl, Grid, makeStyles, 
   MenuItem, Select, Typography } from '@material-ui/core';
 import React, { ChangeEvent } from 'react';
@@ -19,12 +20,11 @@ const useStyles = makeStyles(theme => ({
     fontSize: 18,
   },
   levelSelect: {
-    background: theme.palette.secondary.main,
+    background: theme.palette.background.default,
     paddingBottom: theme.spacing(2),
     height: theme.spacing(3),
     width: theme.spacing(8)
-  },
-  rightAlignItem: { justifyItems: 'flex-end' }
+  }
 }));
 
 interface ICalculatorSelectProps {
@@ -40,26 +40,28 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   const classes = useStyles();
 
   return (
-    <Grid className={classes.container} container>
-      <Grid item sm={2} xs={4}>
+    <Grid className={classes.container} container spacing={6}>
+      <Grid item>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
-      <Grid className={classes.rightAlignItem} item sm={1} xs={2}>
-        <FormControl className={classes.formControl} variant="filled">
-          <Select
-            className={classes.levelSelect}
-            defaultValue={1}
-            id={convertLabelToId(upgradeLabel)}
-            onChange={handleUpgrade}
-            value={upgradeValue}
-          >
-            {Object.keys(upgradeCosts).map((upgradeCost: string) => {
-              return <MenuItem key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
-            })}
-          </Select>
-        </FormControl>
+      <Grid item>
+        <Box display="flex" justifyContent="flex-end">
+          <FormControl className={classes.formControl} variant="filled">
+            <Select
+              className={classes.levelSelect}
+              defaultValue={1}
+              id={convertLabelToId(upgradeLabel)}
+              onChange={handleUpgrade}
+              value={upgradeValue}
+            >
+              {Object.keys(upgradeCosts).map((upgradeCost: string) => {
+                return <MenuItem key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
+              })}
+            </Select>
+          </FormControl>
+        </Box>
       </Grid>
     </Grid>
   );
