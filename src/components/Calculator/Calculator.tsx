@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, makeStyles } from '@material-ui/core';
+import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import numeral from 'numeral';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
@@ -21,14 +21,27 @@ const Calculator: React.FC = () => {
   const classes = useStyles();
   const startingLevel = useSelector((state: RootState) => state.quickCalculator.startingLevel);
   const desiredLevel = useSelector((state: RootState) => state.quickCalculator.desiredLevel);
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
   const handleStartingLevelChange = (level: number) => {
+    if (level > desiredLevel) {
+      setErrorMessage('Starting level cannot be greater than desired level');
+      return;
+    }
+
     dispatch(changeStartingLevel(level));
+    setErrorMessage('');
   };
 
   const handleDesiredLevelChange = (level: number) => {
+    if (level < startingLevel) {
+      setErrorMessage('Desired level cannot be less than starting level');
+      return;
+    }
+
     dispatch(changeDesiredLevel(level));
+    setErrorMessage('');
   };
 
   return (
@@ -53,6 +66,7 @@ const Calculator: React.FC = () => {
           totalCostFormattedValue={numeral(calculateLevelingCost(startingLevel, desiredLevel)).format('0,0')}
           totalCostLabel={'Total Cost'}
         />
+        {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
       </CardContent>
     </Card>
   );
