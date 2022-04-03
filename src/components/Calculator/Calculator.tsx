@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
   calculatorCard: {
     display: 'inline-block',
     margin: theme.spacing(2),
+    textAlign: 'center'
   }
 }));
 
