@@ -1,12 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { applyMiddleware, combineReducers, compose, createStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 
 import quickCalculatorReducer from './features/QuickCalculatorSlice';
 
-export const store = configureStore({
-  reducer: {
-    quickCalculator: quickCalculatorReducer
-  },
+const middlewares = [];
+const rootReducer = combineReducers({
+  quickCalculator: quickCalculatorReducer
 });
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
+
+export const store = compose(applyMiddleware(...middlewares))(createStore)(rootReducer);
 
 export type RootState = ReturnType<typeof store.getState>
 
