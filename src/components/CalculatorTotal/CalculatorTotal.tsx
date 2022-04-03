@@ -21,13 +21,13 @@ const CalculatorTotal: React.FC<ICalculatorTotalProps> = ({ totalCostLabel, tota
   const classes = useStyles();
 
   return (
-    <Grid className={classes.container} container>
-      <Grid item sm={1} xs={2}>
+    <Grid className={classes.container} container spacing={7}>
+      <Grid item>
         <Typography className={classes.totalCost}>
           {totalCostLabel}
         </Typography>
       </Grid>
-      <Grid item sm={1} xs={2}>
+      <Grid item>
         <Box display="flex" justifyContent="flex-end">
           <Typography className={classes.totalCost}>
             {totalCostFormattedValue}

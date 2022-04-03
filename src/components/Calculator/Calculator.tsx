@@ -1,4 +1,4 @@
-import { Card, CardContent, makeStyles } from '@material-ui/core';
+import { Card, CardContent, CardHeader, makeStyles } from '@material-ui/core';
 import numeral from 'numeral';
 import React, { ChangeEvent, useState } from 'react';
 
@@ -8,7 +8,8 @@ import { CalculatorSelect, CalculatorTotal } from '../index';
 
 const useStyles = makeStyles(theme => ({
   calculatorCard: {
-    margin: theme.spacing(1)
+    display: 'inline-block',
+    margin: theme.spacing(2),
   }
 }));
 
@@ -32,6 +33,9 @@ const Calculator: React.FC = () => {
 
   return (
     <Card className={classes.calculatorCard}>
+      <CardHeader
+        title="Quick Calculator"
+      />
       <CardContent>
         <CalculatorSelect 
           handleUpgrade={handleStartingLevelChange}

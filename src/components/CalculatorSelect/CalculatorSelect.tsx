@@ -40,13 +40,13 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   const classes = useStyles();
 
   return (
-    <Grid className={classes.container} container>
-      <Grid item sm={1} xs={2}>
+    <Grid className={classes.container} container spacing={6}>
+      <Grid item>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
-      <Grid item sm={1} xs={2}>
+      <Grid item>
         <Box display="flex" justifyContent="flex-end">
           <FormControl className={classes.formControl} variant="filled">
             <Select
