@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface ICalculatorSelectProps {
-    handleUpgrade(e: ChangeEvent<{ value: unknown }>):  void,
+    handleUpgrade(level: number):  void,
     upgradeCosts: Record<number, number>,
     upgradeLabel: string,
     upgradeValue: number
@@ -38,6 +38,12 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   handleUpgrade, upgradeCosts, upgradeLabel, upgradeValue 
 }) => {
   const classes = useStyles();
+
+  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
+    const newLevel = Number(event.target.value);
+
+    handleUpgrade(newLevel);
+  };
 
   return (
     <Grid className={classes.container} container spacing={6}>
@@ -53,7 +59,7 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
               className={classes.levelSelect}
               defaultValue={1}
               id={convertLabelToId(upgradeLabel)}
-              onChange={handleUpgrade}
+              onChange={handleChange}
               value={upgradeValue}
             >
               {Object.keys(upgradeCosts).map((upgradeCost: string) => {
