@@ -1,9 +1,12 @@
 import { Card, CardContent, CardHeader, makeStyles } from '@material-ui/core';
 import numeral from 'numeral';
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
+import { changeDesiredLevel, changeStartingLevel } from '../../features/QuickCalculatorSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
+import { RootState } from '../../store';
 import { CalculatorSelect, CalculatorTotal } from '../index';
 
 const useStyles = makeStyles(theme => ({
@@ -16,20 +19,16 @@ const useStyles = makeStyles(theme => ({
 
 const Calculator: React.FC = () => {
   const classes = useStyles();
+  const startingLevel = useSelector((state: RootState) => state.quickCalculator.startingLevel);
+  const desiredLevel = useSelector((state: RootState) => state.quickCalculator.desiredLevel);
+  const dispatch = useDispatch();
 
-  const [startingLevel, setStartingLevel] = useState(1);
-  const [desiredLevel, setDesiredLevel] = useState(85);
-
-  const handleStartingLevelChange = (event: ChangeEvent<{ value: unknown }>) => {
-    const newLevel = Number(event.target.value);
-
-    setStartingLevel(newLevel);
+  const handleStartingLevelChange = (level: number) => {
+    dispatch(changeStartingLevel(level));
   };
 
-  const handleDesiredLevelChange = (event: ChangeEvent<{ value: unknown }>) => {
-    const newLevel = Number(event.target.value);
-
-    setDesiredLevel(newLevel);
+  const handleDesiredLevelChange = (level: number) => {
+    dispatch(changeDesiredLevel(level));
   };
 
   return (
