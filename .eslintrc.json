@@ -51,7 +51,7 @@
         "react/jsx-indent-props": ["error", 2],
         "react/jsx-max-props-per-line": [1, { "when": "multiline" }],
         "react/jsx-no-useless-fragment": 1,
-        "react/jsx-space-before-closing": [1, "always"],
+        "react/jsx-tag-spacing": ["error", { "beforeSelfClosing": "always" }],
         "require-atomic-updates": "error",
         "semi": ["error", "always"],
         "simple-import-sort/imports": "error",
