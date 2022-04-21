@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { levelingCosts } from '../../constants/LevelingCost';
 import { changeDesiredLevel, changeStartingLevel } from '../../features/QuickCalculatorSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
+import logGoogleAnalyticsEvent from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
 import { CalculatorSelect, CalculatorTotal } from '../index';
 
@@ -32,6 +33,7 @@ const Calculator: React.FC = () => {
 
     dispatch(changeStartingLevel(level));
     setErrorMessage('');
+    logGoogleAnalyticsEvent('Quick Calculator', 'Starting Level Changed', 'User Interaction');
   };
 
   const handleDesiredLevelChange = (level: number) => {
@@ -42,6 +44,7 @@ const Calculator: React.FC = () => {
 
     dispatch(changeDesiredLevel(level));
     setErrorMessage('');
+    logGoogleAnalyticsEvent('Quick Calculator', 'Desired Level Changed', 'User Interaction');
   };
 
   return (
