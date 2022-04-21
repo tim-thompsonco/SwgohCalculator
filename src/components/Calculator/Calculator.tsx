@@ -1,11 +1,12 @@
 import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import numeral from 'numeral';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
 import { changeDesiredLevel, changeStartingLevel } from '../../features/QuickCalculatorSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
+import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
 import { CalculatorSelect, CalculatorTotal } from '../index';
 
@@ -24,6 +25,10 @@ const Calculator: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    logGoogleAnalyticsPageView(window.location.pathname + window.location.search);
+  }, []);
+
   const handleStartingLevelChange = (level: number) => {
     if (level > desiredLevel) {
       setErrorMessage('Starting level cannot be greater than desired level');
@@ -32,6 +37,7 @@ const Calculator: React.FC = () => {
 
     dispatch(changeStartingLevel(level));
     setErrorMessage('');
+    logGoogleAnalyticsEvent('Quick Calculator', 'Starting Level Changed', 'User Interaction');
   };
 
   const handleDesiredLevelChange = (level: number) => {
@@ -42,6 +48,7 @@ const Calculator: React.FC = () => {
 
     dispatch(changeDesiredLevel(level));
     setErrorMessage('');
+    logGoogleAnalyticsEvent('Quick Calculator', 'Desired Level Changed', 'User Interaction');
   };
 
   return (
