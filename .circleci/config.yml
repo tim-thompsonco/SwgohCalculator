@@ -22,6 +22,15 @@ jobs:
           paths:
             - .
 
+  deploy_app:
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - heroku/deploy-via-git:
+          force: true
+
 workflows:
   test_app:
     jobs:
