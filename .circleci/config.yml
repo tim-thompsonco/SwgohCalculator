@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@4.7.0
+  heroku: circleci/heroku@1.2.6
 
 jobs:
   build_and_test:
@@ -25,3 +26,9 @@ workflows:
   test_app:
     jobs:
       - build_and_test
+      - deploy:
+          requires:
+            - build_and_test
+          filters:
+            branches:
+              only: qa
