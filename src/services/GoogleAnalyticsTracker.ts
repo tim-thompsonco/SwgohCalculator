@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-const logGoogleAnalyticsEvent = (category: string, action: string, label: string) => {
+export const logGoogleAnalyticsEvent = (category: string, action: string, label: string) => {
   return ReactGA.event({ category, action, label });
 };
 
-export default logGoogleAnalyticsEvent;
+export const logGoogleAnalyticsPageView = (path: string) => {
+  return ReactGA.pageview(path);
+};
