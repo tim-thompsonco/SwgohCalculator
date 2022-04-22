@@ -57,4 +57,6 @@ workflows:
       - deploy_production:
           requires:
             - build_and_test
-            - deploy_staging
+          filters:
+            branches:
+              only: main
