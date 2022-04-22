@@ -8,9 +8,9 @@ import { Provider } from 'react-redux';
 import { ErrorFallback } from './components/index';
 import { store } from './store';
 
-const googleTrackingId = process.env.NODE_ENV === 'test' ? 
-  'G-000000' : process.env.REACT_APP_GOOGLE_ANALYTICS_ID as string;
-ReactGA.initialize(googleTrackingId, { testMode: process.env.NODE_ENV === 'test' });
+// We default to a dummy tracking ID so tests and CI builds don't fail
+const googleTrackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_ID ?? 'G-123456';
+ReactGA.initialize(googleTrackingId);
 
 const Calculator = React.lazy(() => import('./components/index').then(module => ({ default: module.Calculator })));
 
