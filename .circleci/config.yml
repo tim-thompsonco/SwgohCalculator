@@ -18,14 +18,18 @@ jobs:
       - run:
           command: npm run build
           name: Build app
-      - run:
-          command: npm start
-          background: true
-          name: Start app
       - persist_to_workspace:
           root: ~/project
           paths:
             - .
+
+  start_app:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          command: npm start
+          background: true
+          name: Start app
 
   deploy_staging:
     docker:
@@ -49,7 +53,11 @@ workflows:
   build_and_deploy:
     jobs:
       - build_and_test
+      - start_app
       - cypress/run
+          requires:
+            - build_and_test
+            - start_app
       - deploy_staging:
           requires:
             - build_and_test
