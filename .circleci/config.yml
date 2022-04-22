@@ -53,6 +53,7 @@ workflows:
 
   deploy_app_to_production:
     jobs:
+      - build_and_test
       - deploy_production:
           requires:
             - build_and_test
