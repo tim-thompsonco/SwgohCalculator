@@ -37,7 +37,7 @@ const Calculator: React.FC = () => {
 
     dispatch(changeStartingLevel(level));
     setErrorMessage('');
-    logGoogleAnalyticsEvent('Quick Calculator', 'Starting Level Changed', 'User Interaction');
+    logGoogleAnalyticsEvent('Quick Calculator', `Starting Level Changed to ${level}`, 'User Interaction');
   };
 
   const handleDesiredLevelChange = (level: number) => {
@@ -48,7 +48,7 @@ const Calculator: React.FC = () => {
 
     dispatch(changeDesiredLevel(level));
     setErrorMessage('');
-    logGoogleAnalyticsEvent('Quick Calculator', 'Desired Level Changed', 'User Interaction');
+    logGoogleAnalyticsEvent('Quick Calculator', `Desired Level Changed to ${level}`, 'User Interaction');
   };
 
   return (
