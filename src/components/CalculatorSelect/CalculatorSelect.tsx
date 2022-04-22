@@ -63,7 +63,7 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
               value={upgradeValue}
             >
               {Object.keys(upgradeCosts).map((upgradeCost: string) => {
-                return <MenuItem key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
+                return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
               })}
             </Select>
           </FormControl>

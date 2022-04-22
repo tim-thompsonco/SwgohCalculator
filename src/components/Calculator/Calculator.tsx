@@ -54,7 +54,8 @@ const Calculator: React.FC = () => {
   return (
     <Card className={classes.calculatorCard}>
       <CardHeader
-        title="Quick Calculator"
+        id={'quickCalculator'}
+        title={'Quick Calculator'}
       />
       <CardContent>
         <CalculatorSelect 
