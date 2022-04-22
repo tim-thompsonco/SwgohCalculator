@@ -5,5 +5,5 @@ export const logGoogleAnalyticsEvent = (category: string, action: string, label:
 };
 
 export const logGoogleAnalyticsPageView = (path: string) => {
-  return ReactGA.pageview(path);
+  return ReactGA.send({ hitType: 'pageview', page: path });
 };
