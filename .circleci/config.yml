@@ -49,14 +49,12 @@ workflows:
       - deploy_staging:
           requires:
             - build_and_test
-            - cypress/run
           filters:
             branches:
               only: qa
       - deploy_production:
           requires:
             - build_and_test
-            - cypress/run
           filters:
             branches:
               only: main
