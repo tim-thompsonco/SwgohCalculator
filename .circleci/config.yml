@@ -22,22 +22,38 @@ jobs:
           paths:
             - .
 
-  deploy_app:
+  deploy_staging:
     docker:
       - image: cimg/node:17.2.0
     steps:
       - attach_workspace:
           at: ~/project
       - heroku/deploy-via-git:
-          force: true
+          app-name: $HEROKU_STAGING_SWGOHCALCULATOR
+
+  deploy_production:
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - heroku/deploy-via-git:
+          app-name: $HEROKU_PRODUCTION_SWGOHCALCULATOR
 
 workflows:
-  test_app:
+  test_app_in_qa:
     jobs:
       - build_and_test
-      - deploy_app:
+      - deploy_staging:
           requires:
             - build_and_test
           filters:
             branches:
               only: qa
+
+  deploy_app_to_production:
+    jobs:
+      - deploy_production:
+          requires:
+            - build_and_test
+            - deploy_staging
