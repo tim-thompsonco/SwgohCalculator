@@ -24,6 +24,9 @@ jobs:
             - .
 
   start_app:
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
       - attach_workspace:
           at: ~/project
       - run:
