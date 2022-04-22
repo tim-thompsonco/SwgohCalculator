@@ -55,9 +55,6 @@ workflows:
       - build_and_test
       - start_app
       - cypress/run
-          requires:
-            - build_and_test
-            - start_app
       - deploy_staging:
           requires:
             - build_and_test
