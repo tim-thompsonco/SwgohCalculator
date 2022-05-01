@@ -6,6 +6,7 @@ import ReactGA from 'react-ga4';
 import { Provider } from 'react-redux';
 
 import { ErrorFallback } from './components/index';
+import NavBar from './components/NavBar/NavBar';
 import { store } from './store';
 
 // We default to a dummy tracking ID so tests and CI builds don't fail
@@ -19,6 +20,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <Suspense fallback={<CircularProgress />}>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <NavBar />
           <Calculator />
         </ErrorBoundary>
       </Suspense>
