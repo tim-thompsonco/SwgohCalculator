@@ -2,6 +2,8 @@ import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { FallbackProps } from 'react-error-boundary';
 
+import DeathStarImage from '../../assets/images/death-star.jpg';
+
 const useStyles = makeStyles(() => ({
   errorContainer: {
     alignItems: 'center',
@@ -24,7 +26,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) =
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <img src={'assets/images/death-star.jpg'} />
+        <img src={DeathStarImage} />
       </Grid>
       <Grid item xs={12}>
         <Button 
