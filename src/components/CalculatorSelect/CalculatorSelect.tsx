@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1, 0)
   },
   levelLabel: {
-    fontSize: 18,
+    fontSize: 18
   }
 }));
 
@@ -38,13 +38,13 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   };
 
   return (
-    <Grid className={classes.container} container spacing={6}>
-      <Grid item xs={6}>
+    <Grid className={classes.container} container>
+      <Grid item justifyContent="flex-start" xs={8}>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={4}>
         <Box display="flex" justifyContent="flex-end">
           <FormControl className={classes.formControl} variant="filled">
             <Select

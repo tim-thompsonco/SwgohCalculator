@@ -13,7 +13,9 @@ import { CalculatorSelect, CalculatorTotal } from '../index';
 const useStyles = makeStyles(theme => ({
   calculatorCard: {
     display: 'inline-block',
-    margin: theme.spacing(2),
+    margin: theme.spacing(2)
+  },
+  calculatorCardHeader: {
     textAlign: 'center'
   }
 }));
@@ -54,6 +56,7 @@ const Calculator: React.FC = () => {
   return (
     <Card className={classes.calculatorCard}>
       <CardHeader
+        className={classes.calculatorCardHeader}
         id={'quickCalculator'}
         title={'Quick Calculator'}
       />
