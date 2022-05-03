@@ -5,7 +5,7 @@ import AppLogo from '../AppLogo/AppLogo';
 
 const NavBar: React.FC = () => {
   return (
-    <AppBar color={'transparent'} position={'static'}>
+    <AppBar position={'static'}>
       <AppLogo />
     </AppBar>
   );

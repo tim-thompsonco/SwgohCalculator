@@ -1,13 +1,12 @@
 import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
     alignItems: 'center'
   },
   totalCost: {
-    color: theme.palette.primary.main,
     fontSize: 18,
   }
 }));

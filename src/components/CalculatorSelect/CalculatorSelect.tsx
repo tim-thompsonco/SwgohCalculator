@@ -12,18 +12,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   formControl: {
-    backgroundColor: theme.palette.secondary.main,
     margin: theme.spacing(1, 0)
   },
   levelLabel: {
-    color: theme.palette.primary.main,
     fontSize: 18,
-  },
-  levelSelect: {
-    background: theme.palette.background.default,
-    paddingBottom: theme.spacing(2),
-    height: theme.spacing(3),
-    width: theme.spacing(8)
   }
 }));
 
@@ -47,16 +39,15 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
 
   return (
     <Grid className={classes.container} container spacing={6}>
-      <Grid item>
+      <Grid item xs={6}>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item xs={6}>
         <Box display="flex" justifyContent="flex-end">
           <FormControl className={classes.formControl} variant="filled">
             <Select
-              className={classes.levelSelect}
               defaultValue={1}
               id={convertLabelToId(upgradeLabel)}
               onChange={handleChange}
