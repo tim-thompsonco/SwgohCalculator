@@ -1,13 +1,12 @@
 import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
     alignItems: 'center'
   },
   totalCost: {
-    color: theme.palette.primary.main,
     fontSize: 18,
   }
 }));
@@ -22,12 +21,12 @@ const CalculatorTotal: React.FC<ICalculatorTotalProps> = ({ totalCostLabel, tota
 
   return (
     <Grid className={classes.container} container spacing={7}>
-      <Grid item>
+      <Grid item xs={8}>
         <Typography className={classes.totalCost}>
           {totalCostLabel}
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item xs={4}>
         <Box display="flex" justifyContent="flex-end">
           <Typography className={classes.totalCost}>
             {totalCostFormattedValue}

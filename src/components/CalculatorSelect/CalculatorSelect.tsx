@@ -1,7 +1,7 @@
 import {
   Box,
-  FormControl, Grid, makeStyles, 
-  MenuItem, Select, Typography } from '@material-ui/core';
+  Grid, makeStyles, 
+  MenuItem, TextField, Typography } from '@material-ui/core';
 import React, { ChangeEvent } from 'react';
 
 import { convertLabelToId } from '../../utilities/Utilities';
@@ -11,19 +11,11 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center'
   },
-  formControl: {
-    backgroundColor: theme.palette.secondary.main,
+  form: {
     margin: theme.spacing(1, 0)
   },
   levelLabel: {
-    color: theme.palette.primary.main,
-    fontSize: 18,
-  },
-  levelSelect: {
-    background: theme.palette.background.default,
-    paddingBottom: theme.spacing(2),
-    height: theme.spacing(3),
-    width: theme.spacing(8)
+    fontSize: 18
   }
 }));
 
@@ -46,27 +38,30 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   };
 
   return (
-    <Grid className={classes.container} container spacing={6}>
-      <Grid item>
+    <Grid className={classes.container} container spacing={2}>
+      <Grid item xs={8}>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
-      <Grid item>
-        <Box display="flex" justifyContent="flex-end">
-          <FormControl className={classes.formControl} variant="filled">
-            <Select
-              className={classes.levelSelect}
-              defaultValue={1}
-              id={convertLabelToId(upgradeLabel)}
-              onChange={handleChange}
-              value={upgradeValue}
-            >
-              {Object.keys(upgradeCosts).map((upgradeCost: string) => {
-                return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
-              })}
-            </Select>
-          </FormControl>
+      <Grid item xs={4}>
+        <Box
+          className={classes.form} 
+          component={'form'}
+          justifyContent={'flex-end'}
+        >
+          <TextField
+            defaultValue={1}
+            id={convertLabelToId(upgradeLabel)}
+            onChange={handleChange}
+            select
+            value={upgradeValue}
+            variant={'outlined'}
+          >
+            {Object.keys(upgradeCosts).map((upgradeCost: string) => {
+              return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
+            })}
+          </TextField>
         </Box>
       </Grid>
     </Grid>
