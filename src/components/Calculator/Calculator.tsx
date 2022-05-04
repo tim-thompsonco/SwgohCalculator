@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
-import { changeDesiredLevel, changeStartingLevel } from '../../features/QuickCalculatorSlice';
+import { changeCurrentLevel, changeDesiredLevel } from '../../features/QuickCalculatorSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const Calculator: React.FC = () => {
   const classes = useStyles();
-  const startingLevel = useSelector((state: RootState) => state.quickCalculator.startingLevel);
+  const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
   const desiredLevel = useSelector((state: RootState) => state.quickCalculator.desiredLevel);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
@@ -31,20 +31,20 @@ const Calculator: React.FC = () => {
     logGoogleAnalyticsPageView(window.location.pathname + window.location.search);
   }, []);
 
-  const handleStartingLevelChange = (level: number) => {
+  const handleCurrentLevelChange = (level: number) => {
     if (level > desiredLevel) {
-      setErrorMessage('Starting level cannot be greater than desired level');
+      setErrorMessage('Current level cannot be greater than desired level');
       return;
     }
 
-    dispatch(changeStartingLevel(level));
+    dispatch(changeCurrentLevel(level));
     setErrorMessage('');
-    logGoogleAnalyticsEvent('Quick Calculator', `Starting Level Changed to ${level}`, 'User Interaction');
+    logGoogleAnalyticsEvent('Quick Calculator', `Current Level Changed to ${level}`, 'User Interaction');
   };
 
   const handleDesiredLevelChange = (level: number) => {
-    if (level < startingLevel) {
-      setErrorMessage('Desired level cannot be less than starting level');
+    if (level < currentLevel) {
+      setErrorMessage('Desired level cannot be less than current level');
       return;
     }
 
@@ -63,10 +63,10 @@ const Calculator: React.FC = () => {
         />
         <CardContent>
           <CalculatorSelect 
-            handleUpgrade={handleStartingLevelChange}
+            handleUpgrade={handleCurrentLevelChange}
             upgradeCosts={levelingCosts}
-            upgradeLabel={'Starting Level'}
-            upgradeValue={startingLevel}
+            upgradeLabel={'Current Level'}
+            upgradeValue={currentLevel}
           />
           <CalculatorSelect 
             handleUpgrade={handleDesiredLevelChange}
@@ -75,7 +75,7 @@ const Calculator: React.FC = () => {
             upgradeValue={desiredLevel}
           />
           <CalculatorTotal 
-            totalCostFormattedValue={numeral(calculateLevelingCost(startingLevel, desiredLevel)).format('0,0')}
+            totalCostFormattedValue={numeral(calculateLevelingCost(currentLevel, desiredLevel)).format('0,0')}
             totalCostLabel={'Total Cost'}
           />
           {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}

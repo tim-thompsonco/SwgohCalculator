@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface QuickCalculatorState {
-  startingLevel: number,
+  currentLevel: number,
   desiredLevel: number
 }
 
 const initialState: QuickCalculatorState = {
-  startingLevel: 1,
+  currentLevel: 1,
   desiredLevel: 85
 };
 
@@ -14,8 +14,8 @@ export const quickCalculatorSlice = createSlice({
   name: 'quickCalculator',
   initialState,
   reducers: {
-    changeStartingLevel: (state, action: PayloadAction<number>) => {
-      state.startingLevel = action.payload;
+    changeCurrentLevel: (state, action: PayloadAction<number>) => {
+      state.currentLevel = action.payload;
     },
     changeDesiredLevel: (state, action: PayloadAction<number>) => {
       state.desiredLevel = action.payload;
@@ -23,6 +23,6 @@ export const quickCalculatorSlice = createSlice({
   }
 });
 
-export const { changeStartingLevel, changeDesiredLevel } = quickCalculatorSlice.actions;
+export const { changeCurrentLevel, changeDesiredLevel } = quickCalculatorSlice.actions;
 
 export default quickCalculatorSlice.reducer;
