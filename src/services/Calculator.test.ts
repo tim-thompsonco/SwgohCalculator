@@ -40,33 +40,33 @@ describe('calculateLevelingCost', () => {
       
   test('Leveling cost is computed correctly for level 1 to 60', () => {
     const currentLevel = 1;
-    const desiredLevel = 60;
-    const totalCost = calculateLevelingCost(currentLevel, desiredLevel);
+    const targetLevel = 60;
+    const totalCost = calculateLevelingCost(currentLevel, targetLevel);
         
     expect(totalCost).toBe(1100784);
   });
       
   test('Leveling cost is computed correctly for level 70 to 85', () => {
     const currentLevel = 70;
-    const desiredLevel = 85;
-    const totalCost = calculateLevelingCost(currentLevel, desiredLevel);
+    const targetLevel = 85;
+    const totalCost = calculateLevelingCost(currentLevel, targetLevel);
         
     expect(totalCost).toBe(3855300);
   });
       
-  test('Leveling cost is computed correctly when current and desired level are the same', () => {
+  test('Leveling cost is computed correctly when current and target level are the same', () => {
     const currentLevel = 70;
-    const desiredLevel = 70;
-    const totalCost = calculateLevelingCost(currentLevel, desiredLevel);
+    const targetLevel = 70;
+    const totalCost = calculateLevelingCost(currentLevel, targetLevel);
           
     expect(totalCost).toBe(0);
   });
       
-  test('A current level greater than desired level throws an error', () => {
+  test('A current level greater than target level throws an error', () => {
     const currentLevel = 71;
-    const desiredLevel = 70;
+    const targetLevel = 70;
             
-    expect(() => calculateLevelingCost(currentLevel, desiredLevel))
-      .toThrow('Current level cannot be greater than desired level.');
+    expect(() => calculateLevelingCost(currentLevel, targetLevel))
+      .toThrow('Current level cannot be greater than target level.');
   });
 });

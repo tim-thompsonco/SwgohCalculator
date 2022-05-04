@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
-import { changeCurrentLevel, changeDesiredLevel } from '../../features/QuickCalculatorSlice';
+import { changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 const Calculator: React.FC = () => {
   const classes = useStyles();
   const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
-  const desiredLevel = useSelector((state: RootState) => state.quickCalculator.desiredLevel);
+  const targetLevel = useSelector((state: RootState) => state.quickCalculator.targetLevel);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
@@ -32,8 +32,8 @@ const Calculator: React.FC = () => {
   }, []);
 
   const handleCurrentLevelChange = (level: number) => {
-    if (level > desiredLevel) {
-      setErrorMessage('Current level cannot be greater than desired level');
+    if (level > targetLevel) {
+      setErrorMessage('Current level cannot be greater than target level');
       return;
     }
 
@@ -42,15 +42,15 @@ const Calculator: React.FC = () => {
     logGoogleAnalyticsEvent('Quick Calculator', `Current Level Changed to ${level}`, 'User Interaction');
   };
 
-  const handleDesiredLevelChange = (level: number) => {
+  const handleTargetLevelChange = (level: number) => {
     if (level < currentLevel) {
-      setErrorMessage('Desired level cannot be less than current level');
+      setErrorMessage('Target level cannot be less than current level');
       return;
     }
 
-    dispatch(changeDesiredLevel(level));
+    dispatch(changeTargetLevel(level));
     setErrorMessage('');
-    logGoogleAnalyticsEvent('Quick Calculator', `Desired Level Changed to ${level}`, 'User Interaction');
+    logGoogleAnalyticsEvent('Quick Calculator', `Target Level Changed to ${level}`, 'User Interaction');
   };
 
   return (
@@ -69,13 +69,13 @@ const Calculator: React.FC = () => {
             upgradeValue={currentLevel}
           />
           <CalculatorSelect 
-            handleUpgrade={handleDesiredLevelChange}
+            handleUpgrade={handleTargetLevelChange}
             upgradeCosts={levelingCosts}
-            upgradeLabel={'Desired Level'}
-            upgradeValue={desiredLevel}
+            upgradeLabel={'Target Level'}
+            upgradeValue={targetLevel}
           />
           <CalculatorTotal 
-            totalCostFormattedValue={numeral(calculateLevelingCost(currentLevel, desiredLevel)).format('0,0')}
+            totalCostFormattedValue={numeral(calculateLevelingCost(currentLevel, targetLevel)).format('0,0')}
             totalCostLabel={'Total Cost'}
           />
           {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
