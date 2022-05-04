@@ -48,7 +48,6 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
         <Box
           className={classes.form} 
           component={'form'}
-          display={'flex'}
           justifyContent={'flex-end'}
         >
           <TextField
