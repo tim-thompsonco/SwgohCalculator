@@ -1,6 +1,6 @@
 import {
   Box,
-  FormControl, Grid, makeStyles, 
+  Grid, makeStyles, 
   MenuItem, TextField, Typography } from '@material-ui/core';
 import React, { ChangeEvent } from 'react';
 
@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center'
   },
-  formControl: {
+  form: {
     margin: theme.spacing(1, 0)
   },
   levelLabel: {
@@ -39,27 +39,30 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
 
   return (
     <Grid className={classes.container} container spacing={2}>
-      <Grid item justifyContent={'flex-start'} xs={8}>
+      <Grid item xs={8}>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
       <Grid item xs={4}>
-        <Box display={'flex'} justifyContent={'flex-end'}>
-          <FormControl className={classes.formControl}>
-            <TextField
-              defaultValue={1}
-              id={convertLabelToId(upgradeLabel)}
-              onChange={handleChange}
-              select
-              value={upgradeValue}
-              variant={'outlined'}
-            >
-              {Object.keys(upgradeCosts).map((upgradeCost: string) => {
-                return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
-              })}
-            </TextField>
-          </FormControl>
+        <Box
+          className={classes.form} 
+          component={'form'}
+          display={'flex'}
+          justifyContent={'flex-end'}
+        >
+          <TextField
+            defaultValue={1}
+            id={convertLabelToId(upgradeLabel)}
+            onChange={handleChange}
+            select
+            value={upgradeValue}
+            variant={'outlined'}
+          >
+            {Object.keys(upgradeCosts).map((upgradeCost: string) => {
+              return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
+            })}
+          </TextField>
         </Box>
       </Grid>
     </Grid>
