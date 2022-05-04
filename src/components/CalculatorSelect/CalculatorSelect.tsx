@@ -46,7 +46,7 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
       </Grid>
       <Grid item xs={4}>
         <Box display={'flex'} justifyContent={'flex-end'}>
-          <FormControl className={classes.formControl} size={'small'} variant={'filled'}>
+          <FormControl className={classes.formControl}>
             <TextField
               defaultValue={1}
               id={convertLabelToId(upgradeLabel)}
