@@ -13,7 +13,8 @@ import { CalculatorSelect, CalculatorTotal } from '../index';
 const useStyles = makeStyles(theme => ({
   calculatorCard: {
     display: 'inline-block',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    minWidth: '13%'
   },
   calculatorCardHeader: {
     textAlign: 'center'

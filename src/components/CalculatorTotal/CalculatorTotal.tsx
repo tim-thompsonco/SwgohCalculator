@@ -21,12 +21,12 @@ const CalculatorTotal: React.FC<ICalculatorTotalProps> = ({ totalCostLabel, tota
 
   return (
     <Grid className={classes.container} container spacing={7}>
-      <Grid item>
+      <Grid item xs={8}>
         <Typography className={classes.totalCost}>
           {totalCostLabel}
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid item xs={4}>
         <Box display="flex" justifyContent="flex-end">
           <Typography className={classes.totalCost}>
             {totalCostFormattedValue}

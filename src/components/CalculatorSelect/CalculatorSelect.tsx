@@ -1,7 +1,7 @@
 import {
   Box,
   FormControl, Grid, makeStyles, 
-  MenuItem, Select, Typography } from '@material-ui/core';
+  MenuItem, TextField, Typography } from '@material-ui/core';
 import React, { ChangeEvent } from 'react';
 
 import { convertLabelToId } from '../../utilities/Utilities';
@@ -38,25 +38,27 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   };
 
   return (
-    <Grid className={classes.container} container>
-      <Grid item justifyContent="flex-start" xs={8}>
+    <Grid className={classes.container} container spacing={2}>
+      <Grid item justifyContent={'flex-start'} xs={8}>
         <Typography className={classes.levelLabel}>
           {upgradeLabel}
         </Typography>
       </Grid>
       <Grid item xs={4}>
-        <Box display="flex" justifyContent="flex-end">
-          <FormControl className={classes.formControl} variant="filled">
-            <Select
+        <Box display={'flex'} justifyContent={'flex-end'}>
+          <FormControl className={classes.formControl} size={'small'} variant={'filled'}>
+            <TextField
               defaultValue={1}
               id={convertLabelToId(upgradeLabel)}
               onChange={handleChange}
+              select
               value={upgradeValue}
+              variant={'outlined'}
             >
               {Object.keys(upgradeCosts).map((upgradeCost: string) => {
                 return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
               })}
-            </Select>
+            </TextField>
           </FormControl>
         </Box>
       </Grid>
