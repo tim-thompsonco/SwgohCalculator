@@ -2,16 +2,16 @@ import { maxLevel } from '../constants/LevelInfo';
 import { levelingCosts } from '../constants/LevelingCost';
 import { validatePlayerLevel } from './Validation';
 
-export const calculateLevelingCost = (startingLevel: number, desiredLevel: number): number => {
-  validatePlayerLevel(startingLevel);
-  validatePlayerLevel(desiredLevel);
+export const calculateLevelingCost = (currentLevel: number, targetLevel: number): number => {
+  validatePlayerLevel(currentLevel);
+  validatePlayerLevel(targetLevel);
 
-  if (startingLevel > desiredLevel) {
-    throw new Error('Starting level cannot be greater than desired level.');
+  if (currentLevel > targetLevel) {
+    throw new Error('Current level cannot be greater than target level.');
   }
 
   let totalCost = 0;
-  for (let i = startingLevel; i < desiredLevel; i++) {
+  for (let i = currentLevel; i < targetLevel; i++) {
     const currentLevel = i;
     totalCost += calculateNextLevelCost(currentLevel);
   }
