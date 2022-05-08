@@ -1,10 +1,11 @@
 import { Box, Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import axios from 'axios';
 import numeral from 'numeral';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
-import { changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
+import { changeCurrentLevel, changeTargetLevel, hydrateUnitsList } from '../../features/QuickCalculatorSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
@@ -24,12 +25,26 @@ const Calculator: React.FC = () => {
   const classes = useStyles();
   const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
   const targetLevel = useSelector((state: RootState) => state.quickCalculator.targetLevel);
+  const unitsList = useSelector((state: RootState) => state.quickCalculator.unitsList);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     logGoogleAnalyticsPageView(window.location.pathname + window.location.search);
   }, []);
+
+  useEffect(() => {
+    if (!unitsList) {
+      loadUnitsList();
+    }
+  }, [unitsList]);
+
+  const loadUnitsList = async () => {
+    const response = await axios.get('https://swgohcalculatorapi-qa.herokuapp.com/units');
+    const unitsList: Record<string, string> = response.data;
+  
+    dispatch(hydrateUnitsList(unitsList));
+  };
 
   const handleCurrentLevelChange = (level: number) => {
     if (level > targetLevel) {

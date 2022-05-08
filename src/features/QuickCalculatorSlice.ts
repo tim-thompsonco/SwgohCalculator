@@ -2,12 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface QuickCalculatorState {
   currentLevel: number,
-  targetLevel: number
+  targetLevel: number,
+  unitsList: Record<string, string> | null
 }
 
 const initialState: QuickCalculatorState = {
   currentLevel: 1,
-  targetLevel: 85
+  targetLevel: 85,
+  unitsList: null
 };
 
 export const quickCalculatorSlice = createSlice({
@@ -19,10 +21,17 @@ export const quickCalculatorSlice = createSlice({
     },
     changeTargetLevel: (state, action: PayloadAction<number>) => {
       state.targetLevel = action.payload;
+    },
+    hydrateUnitsList: (state, action: PayloadAction<Record<string, string>>) => {
+      state.unitsList = action.payload;
     }
   }
 });
 
-export const { changeCurrentLevel, changeTargetLevel } = quickCalculatorSlice.actions;
+export const { 
+  changeCurrentLevel, 
+  changeTargetLevel,
+  hydrateUnitsList
+} = quickCalculatorSlice.actions;
 
 export default quickCalculatorSlice.reducer;
