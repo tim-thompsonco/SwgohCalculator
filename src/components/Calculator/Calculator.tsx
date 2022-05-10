@@ -5,11 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
-import { changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
+import { changeCurrentCharacter, changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
 import { hydrateUnitsList } from '../../features/UnitsSlice';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
 import { CalculatorSelect, CalculatorTotal } from '../index';
+import UnitsSelect from '../UnitsSelect/UnitsSelect';
 
 const useStyles = makeStyles(theme => ({
   calculatorCard: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 const Calculator: React.FC = () => {
   const classes = useStyles();
+  const currentCharacter = useSelector((state: RootState) => state.quickCalculator.currentCharacter);
   const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
   const targetLevel = useSelector((state: RootState) => state.quickCalculator.targetLevel);
   const upgradeCost = useSelector((state: RootState) => state.quickCalculator.upgradeCost);
@@ -69,6 +71,12 @@ const Calculator: React.FC = () => {
     logGoogleAnalyticsEvent('Quick Calculator', `Target Level Changed to ${level}`, 'User Interaction');
   };
 
+  const handleUnitChange = (unit: string) => {
+    dispatch(changeCurrentCharacter(unit));
+    setErrorMessage('');
+    logGoogleAnalyticsEvent('Quick Calculator', `Unit Changed to ${unit}`, 'User Interaction');
+  };
+
   return (
     <Box display={'inline-block'}>
       <Card className={classes.calculatorCard}>
@@ -78,6 +86,12 @@ const Calculator: React.FC = () => {
           title={'Quick Calculator'}
         />
         <CardContent>
+          <UnitsSelect 
+            handleChange={handleUnitChange}
+            selectLabel={'Character'}
+            selectOptions={unitsList ?? {}}
+            selectValue={currentCharacter}
+          />
           <CalculatorSelect 
             handleChange={handleCurrentLevelChange}
             selectLabel={'Current Level'}
