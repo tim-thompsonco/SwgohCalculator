@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import numeral from 'numeral';
+import * as R from 'ramda';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,7 +38,7 @@ const Calculator: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!unitsList) {
+    if (R.isEmpty(unitsList)) {
       loadUnitsList();
     }
   }, [unitsList]);
@@ -89,7 +90,7 @@ const Calculator: React.FC = () => {
           <UnitsSelect 
             handleChange={handleUnitChange}
             selectLabel={'Character'}
-            selectOptions={unitsList ?? {}}
+            selectOptions={unitsList}
             selectValue={currentCharacter}
           />
           <CalculatorSelect 

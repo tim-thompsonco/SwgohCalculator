@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface UnitsState {
-  unitsList: Record<string, string> | null
+  unitsList: Record<string, string>
 }
 
 const initialState: UnitsState = {
-  unitsList: null
+  unitsList: {}
 };
 
 export const unitsSlice = createSlice({
