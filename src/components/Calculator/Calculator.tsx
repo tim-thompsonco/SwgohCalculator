@@ -79,16 +79,16 @@ const Calculator: React.FC = () => {
         />
         <CardContent>
           <CalculatorSelect 
-            handleUpgrade={handleCurrentLevelChange}
-            upgradeCosts={levelingCosts}
-            upgradeLabel={'Current Level'}
-            upgradeValue={currentLevel}
+            handleChange={handleCurrentLevelChange}
+            selectLabel={'Current Level'}
+            selectOptions={levelingCosts}
+            selectValue={currentLevel}
           />
           <CalculatorSelect 
-            handleUpgrade={handleTargetLevelChange}
-            upgradeCosts={levelingCosts}
-            upgradeLabel={'Target Level'}
-            upgradeValue={targetLevel}
+            handleChange={handleTargetLevelChange}
+            selectLabel={'Target Level'}
+            selectOptions={levelingCosts}
+            selectValue={targetLevel}
           />
           <CalculatorTotal 
             totalCostFormattedValue={numeral(upgradeCost).format('0,0')}

@@ -14,34 +14,28 @@ const useStyles = makeStyles(theme => ({
   form: {
     margin: theme.spacing(1, 0)
   },
-  levelLabel: {
+  label: {
     fontSize: 18
   }
 }));
 
 interface ICalculatorSelectProps {
-    handleUpgrade(level: number):  void,
-    upgradeCosts: Record<number, number>,
-    upgradeLabel: string,
-    upgradeValue: number
+    handleChange(level: number):  void,
+    selectLabel: string,
+    selectOptions: Record<number, number>,
+    selectValue: number
 }
 
 const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
-  handleUpgrade, upgradeCosts, upgradeLabel, upgradeValue 
+  handleChange, selectLabel, selectOptions, selectValue 
 }) => {
   const classes = useStyles();
-
-  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    const newLevel = Number(event.target.value);
-
-    handleUpgrade(newLevel);
-  };
 
   return (
     <Grid className={classes.container} container spacing={2}>
       <Grid item xs={8}>
-        <Typography className={classes.levelLabel}>
-          {upgradeLabel}
+        <Typography className={classes.label}>
+          {selectLabel}
         </Typography>
       </Grid>
       <Grid item xs={4}>
@@ -52,14 +46,18 @@ const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
         >
           <TextField
             defaultValue={1}
-            id={convertLabelToId(upgradeLabel)}
-            onChange={handleChange}
+            id={convertLabelToId(selectLabel)}
+            onChange={(event: ChangeEvent<{ value: unknown }>) => {
+              const newLevel = event.target.value as number;
+
+              handleChange(newLevel);
+            }}
             select
-            value={upgradeValue}
+            value={selectValue}
             variant={'outlined'}
           >
-            {Object.keys(upgradeCosts).map((upgradeCost: string) => {
-              return <MenuItem id={upgradeCost} key={upgradeCost} value={upgradeCost}>{upgradeCost}</MenuItem>;
+            {Object.keys(selectOptions).map((option: string) => {
+              return <MenuItem id={option} key={option} value={option}>{option}</MenuItem>;
             })}
           </TextField>
         </Box>
