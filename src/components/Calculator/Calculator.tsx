@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { levelingCosts } from '../../constants/LevelingCost';
 import { changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
 import { hydrateUnitsList } from '../../features/UnitsSlice';
-import { calculateLevelingCost } from '../../services/Calculator';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
 import { CalculatorSelect, CalculatorTotal } from '../index';
@@ -26,6 +25,7 @@ const Calculator: React.FC = () => {
   const classes = useStyles();
   const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
   const targetLevel = useSelector((state: RootState) => state.quickCalculator.targetLevel);
+  const upgradeCost = useSelector((state: RootState) => state.quickCalculator.upgradeCost);
   const unitsList = useSelector((state: RootState) => state.units.unitsList);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
@@ -91,7 +91,7 @@ const Calculator: React.FC = () => {
             upgradeValue={targetLevel}
           />
           <CalculatorTotal 
-            totalCostFormattedValue={numeral(calculateLevelingCost(currentLevel, targetLevel)).format('0,0')}
+            totalCostFormattedValue={numeral(upgradeCost).format('0,0')}
             totalCostLabel={'Total Cost'}
           />
           {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
