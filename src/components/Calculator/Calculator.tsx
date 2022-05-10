@@ -5,7 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { levelingCosts } from '../../constants/LevelingCost';
-import { changeCurrentLevel, changeTargetLevel, hydrateUnitsList } from '../../features/QuickCalculatorSlice';
+import { changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
+import { hydrateUnitsList } from '../../features/UnitsSlice';
 import { calculateLevelingCost } from '../../services/Calculator';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
@@ -25,7 +26,7 @@ const Calculator: React.FC = () => {
   const classes = useStyles();
   const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
   const targetLevel = useSelector((state: RootState) => state.quickCalculator.targetLevel);
-  const unitsList = useSelector((state: RootState) => state.quickCalculator.unitsList);
+  const unitsList = useSelector((state: RootState) => state.units.unitsList);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
