@@ -5,13 +5,11 @@ import * as R from 'ramda';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { levelingCosts } from '../../constants/LevelingCost';
 import { changeCurrentCharacter, changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
 import { hydrateUnitsList } from '../../features/UnitsSlice';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
-import { CalculatorSelect, CalculatorTotal } from '../index';
-import UnitsSelect from '../UnitsSelect/UnitsSelect';
+import { CalculatorTotal, CharacterCalculator, LabelsBar } from '../index';
 
 const useStyles = makeStyles(theme => ({
   calculatorCard: {
@@ -23,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Calculator: React.FC = () => {
+const QuickCalculator: React.FC = () => {
   const classes = useStyles();
   const currentCharacter = useSelector((state: RootState) => state.quickCalculator.currentCharacter);
   const currentLevel = useSelector((state: RootState) => state.quickCalculator.currentLevel);
@@ -87,23 +85,15 @@ const Calculator: React.FC = () => {
           title={'Quick Calculator'}
         />
         <CardContent>
-          <UnitsSelect 
-            handleChange={handleUnitChange}
-            selectLabel={'Character'}
-            selectOptions={unitsList}
-            selectValue={currentCharacter}
-          />
-          <CalculatorSelect 
-            handleChange={handleCurrentLevelChange}
-            selectLabel={'Current Level'}
-            selectOptions={levelingCosts}
-            selectValue={currentLevel}
-          />
-          <CalculatorSelect 
-            handleChange={handleTargetLevelChange}
-            selectLabel={'Target Level'}
-            selectOptions={levelingCosts}
-            selectValue={targetLevel}
+          <LabelsBar />
+          <CharacterCalculator
+            currentCharacter={currentCharacter}
+            currentLevel={currentLevel}
+            handleCurrentLevelChange={handleCurrentLevelChange}
+            handleTargetLevelChange={handleTargetLevelChange}
+            handleUnitChange={handleUnitChange}
+            targetLevel={targetLevel}
+            unitsList={unitsList}
           />
           <CalculatorTotal 
             totalCostFormattedValue={numeral(upgradeCost).format('0,0')}
@@ -116,4 +106,4 @@ const Calculator: React.FC = () => {
   );
 };
 
-export default Calculator;
+export default QuickCalculator;
