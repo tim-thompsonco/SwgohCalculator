@@ -1,5 +1,5 @@
 import { MenuItem, TextField } from '@material-ui/core';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 
 import { convertLabelToId } from '../../utilities/Utilities';
 
@@ -13,16 +13,18 @@ interface ICalculatorSelectProps {
 const CalculatorSelect: React.FC<ICalculatorSelectProps> = ({
   handleChange, selectLabel, selectOptions, selectValue 
 }) => {
+  const handleOnChange = useCallback((event: ChangeEvent<{ value: unknown }>) => {
+    const newLevel = event.target.value as number;
+
+    handleChange(newLevel);
+  }, [handleChange]);
+
   return (
     <TextField
       defaultValue={1}
       fullWidth
       id={convertLabelToId(selectLabel)}
-      onChange={(event: ChangeEvent<{ value: unknown }>) => {
-        const newLevel = event.target.value as number;
-
-        handleChange(newLevel);
-      }}
+      onChange={handleOnChange}
       select
       value={selectValue}
       variant={'outlined'}
