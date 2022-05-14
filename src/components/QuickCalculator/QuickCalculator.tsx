@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import numeral from 'numeral';
 import * as R from 'ramda';
@@ -11,11 +11,11 @@ import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../servi
 import { RootState } from '../../store';
 import { CalculatorTotal, CharacterCalculator, LabelsBar } from '../index';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   calculatorCard: {
     display: 'inline-block',
     margin: theme.spacing(2),
-    minWidth: 550
+    width: theme.breakpoints.down('sm') ? '90%' : '30%'
   },
   calculatorCardHeader: {
     textAlign: 'center'
@@ -78,33 +78,31 @@ const QuickCalculator: React.FC = () => {
   };
 
   return (
-    <Box display={'inline-block'}>
-      <Card className={classes.calculatorCard}>
-        <CardHeader
-          className={classes.calculatorCardHeader}
-          id={'quickCalculator'}
-          title={'Quick Calculator'}
-          titleTypographyProps={{ variant: 'h1' }}
+    <Card className={classes.calculatorCard}>
+      <CardHeader
+        className={classes.calculatorCardHeader}
+        id={'quickCalculator'}
+        title={'Quick Calculator'}
+        titleTypographyProps={{ variant: 'h3' }}
+      />
+      <CardContent>
+        <LabelsBar />
+        <CharacterCalculator
+          currentCharacter={currentCharacter}
+          currentLevel={currentLevel}
+          handleCurrentLevelChange={handleCurrentLevelChange}
+          handleTargetLevelChange={handleTargetLevelChange}
+          handleUnitChange={handleUnitChange}
+          targetLevel={targetLevel}
+          unitsList={unitsList}
         />
-        <CardContent>
-          <LabelsBar />
-          <CharacterCalculator
-            currentCharacter={currentCharacter}
-            currentLevel={currentLevel}
-            handleCurrentLevelChange={handleCurrentLevelChange}
-            handleTargetLevelChange={handleTargetLevelChange}
-            handleUnitChange={handleUnitChange}
-            targetLevel={targetLevel}
-            unitsList={unitsList}
-          />
-          <CalculatorTotal 
-            totalCostFormattedValue={numeral(upgradeCost).format('0,0')}
-            totalCostLabel={'Total Cost'}
-          />
-          {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
-        </CardContent>
-      </Card>
-    </Box>
+        <CalculatorTotal 
+          totalCostFormattedValue={numeral(upgradeCost).format('0,0')}
+          totalCostLabel={'Total Cost'}
+        />
+        {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
+      </CardContent>
+    </Card>
   );
 };
 

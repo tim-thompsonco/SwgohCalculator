@@ -9,12 +9,12 @@ interface ICalculatorTotalProps {
 const CalculatorTotal: React.FC<ICalculatorTotalProps> = ({ totalCostLabel, totalCostFormattedValue }) => {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={9}>
+      <Grid item sm={9} xs={8}>
         <Typography variant={'h5'}>
           {totalCostLabel}
         </Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item sm={3} xs={4}>
         <Typography variant={'h5'}>
           {totalCostFormattedValue}
         </Typography>
