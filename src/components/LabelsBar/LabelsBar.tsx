@@ -1,31 +1,21 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 
-const useStyles = makeStyles(() => ({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center'
-  },
-}));
-
 const LabelsBar: React.FC = () => {
-  const classes = useStyles();
-
   return (
-    <Grid className={classes.container} container spacing={3}>
+    <Grid alignItems={'center'} container spacing={3}>
       <Grid item xs={6}>
-        <Typography>
+        <Typography variant={'h6'}>
           {'Character'}
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography>
+        <Typography variant={'h6'}>
           {'Current Level'}
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography>
+        <Typography variant={'h6'}>
           {'Target Level'}
         </Typography>
       </Grid>

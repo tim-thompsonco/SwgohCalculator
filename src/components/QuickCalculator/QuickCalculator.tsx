@@ -14,7 +14,8 @@ import { CalculatorTotal, CharacterCalculator, LabelsBar } from '../index';
 const useStyles = makeStyles(theme => ({
   calculatorCard: {
     display: 'inline-block',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    minWidth: 550
   },
   calculatorCardHeader: {
     textAlign: 'center'
@@ -83,6 +84,7 @@ const QuickCalculator: React.FC = () => {
           className={classes.calculatorCardHeader}
           id={'quickCalculator'}
           title={'Quick Calculator'}
+          titleTypographyProps={{ variant: 'h1' }}
         />
         <CardContent>
           <LabelsBar />
