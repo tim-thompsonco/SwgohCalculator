@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardContent, CardHeader, CircularProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import numeral from 'numeral';
 import * as R from 'ramda';
@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
   calculatorCardHeader: {
     textAlign: 'center'
+  },
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: theme.spacing(2, 0, 0)
   }
 }));
 
@@ -29,6 +34,7 @@ const QuickCalculator: React.FC = () => {
   const targetLevel = useSelector((state: RootState) => state.quickCalculator.targetLevel);
   const upgradeCost = useSelector((state: RootState) => state.quickCalculator.upgradeCost);
   const unitsList = useSelector((state: RootState) => state.units.unitsList);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
@@ -43,10 +49,12 @@ const QuickCalculator: React.FC = () => {
   }, [unitsList]);
 
   const loadUnitsList = async () => {
+    setIsLoading(true);
     const response = await axios.get('https://swgohcalculatorapi-qa.herokuapp.com/units');
     const unitsList: Record<string, string> = response.data;
   
     dispatch(hydrateUnitsList(unitsList));
+    setIsLoading(false);
   };
 
   const handleCurrentLevelChange = (level: number) => {
@@ -77,7 +85,10 @@ const QuickCalculator: React.FC = () => {
     logGoogleAnalyticsEvent('Quick Calculator', `Unit Changed to ${unit}`, 'User Interaction');
   };
 
-  return (
+  return isLoading ? 
+    <div className={classes.spinner}>
+      <CircularProgress color={'secondary'} />
+    </div> : 
     <Card className={classes.calculatorCard}>
       <CardHeader
         className={classes.calculatorCardHeader}
@@ -102,8 +113,7 @@ const QuickCalculator: React.FC = () => {
         />
         {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
 
 export default QuickCalculator;
