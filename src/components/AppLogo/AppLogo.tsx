@@ -6,13 +6,12 @@ import SwgohCalculatorLogo from '../../assets/images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    margin: theme.spacing(1, 1, 0),
+    margin: theme.spacing(1, 0, 0),
     maxHeight: 'auto',
-    maxWidth: theme.breakpoints.down('sm') ? '95%' : '50%'
+    maxWidth: '95vw'
   },
   logoContainer: {
-    alignItems: 'center',
-    justifyContent: theme.breakpoints.down('sm') ? 'center' : 'flex-start'
+    alignItems: 'center'
   }
 }));
 

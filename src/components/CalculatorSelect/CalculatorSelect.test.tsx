@@ -6,14 +6,14 @@ import CalculatorSelect from './CalculatorSelect';
 
 describe('CalculatorSelect component', () => {
   test('Smoke test', () => {
-    const mockHandleUpgrade = jest.fn();
+    const mockHandleChange = jest.fn();
       
     render(
       <CalculatorSelect 
-        handleUpgrade={mockHandleUpgrade}
-        upgradeCosts={levelingCosts}
-        upgradeLabel={'Test Label'}
-        upgradeValue={50}
+        handleChange={mockHandleChange}
+        selectLabel={'Test Label'}
+        selectOptions={levelingCosts}
+        selectValue={50}
       />
     );
   });

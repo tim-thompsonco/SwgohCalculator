@@ -1,4 +1,9 @@
-export { default as Calculator } from './Calculator/Calculator';
+export { default as AppLogo } from './AppLogo/AppLogo';
 export { default as CalculatorSelect } from './CalculatorSelect/CalculatorSelect';
 export { default as CalculatorTotal } from './CalculatorTotal/CalculatorTotal';
+export { default as CharacterCalculator } from './CharacterCalculator/CharacterCalculator';
 export { default as ErrorFallback } from './ErrorFallback/ErrorFallback';
+export { default as LabelsBar } from './LabelsBar/LabelsBar';
+export { default as NavBar } from './NavBar/NavBar';
+export { default as QuickCalculator } from './QuickCalculator/QuickCalculator';
+export { default as UnitsSelect } from './UnitsSelect/UnitsSelect';
