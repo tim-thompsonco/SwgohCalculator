@@ -25,7 +25,7 @@ const CharacterCalculator: React.FC<ICharacterCalculatorProps> = ({
   handleTargetLevelChange }) => {
   return (
     <Grid container spacing={3}>
-      <Grid item sm={6} xs={4}>
+      <Grid item sm={6} xs={6}>
         <UnitsSelect 
           handleChange={handleUnitChange}
           selectLabel={'Character'}
@@ -33,7 +33,7 @@ const CharacterCalculator: React.FC<ICharacterCalculatorProps> = ({
           selectValue={currentCharacter}
         />
       </Grid>
-      <Grid item sm={3} xs={4}>
+      <Grid item sm={3} xs={3}>
         <CalculatorSelect 
           handleChange={handleCurrentLevelChange}
           selectLabel={'Current Level'}
@@ -41,7 +41,7 @@ const CharacterCalculator: React.FC<ICharacterCalculatorProps> = ({
           selectValue={currentLevel}
         />
       </Grid>
-      <Grid item sm={3} xs={4}>
+      <Grid item sm={3} xs={3}>
         <CalculatorSelect 
           handleChange={handleTargetLevelChange}
           selectLabel={'Target Level'}

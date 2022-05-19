@@ -100,7 +100,7 @@ const QuickCalculator: React.FC = () => {
       <CardContent>
         <LabelsBar />
         <CharacterCalculator
-          currentCharacter={currentCharacter}
+          currentCharacter={currentCharacter.length ? currentCharacter : Object.keys(unitsList)[0]}
           currentLevel={currentLevel}
           handleCurrentLevelChange={handleCurrentLevelChange}
           handleTargetLevelChange={handleTargetLevelChange}
