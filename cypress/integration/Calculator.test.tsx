@@ -1,4 +1,3 @@
-import { cyan } from '@material-ui/core/colors';
 import numeral from 'numeral';
 
 import { calculateLevelingCost } from '../../src/services/Calculator';
