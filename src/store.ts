@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, compose, createStore } from '@reduxjs
 import logger from 'redux-logger';
 
 import quickCalculatorReducer from './features/QuickCalculatorSlice';
+import unitsReducer from './features/UnitsSlice';
 
 const middlewares = [];
 const rootReducer = combineReducers({
-  quickCalculator: quickCalculatorReducer
+  quickCalculator: quickCalculatorReducer,
+  units: unitsReducer
 });
 
 if (process.env.NODE_ENV === 'development') {

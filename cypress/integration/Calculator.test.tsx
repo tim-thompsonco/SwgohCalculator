@@ -14,6 +14,8 @@ it('Calculate cost for current level of 10 and target level of 85', () => {
   
   cy.visit('/', { timeout: 45000 }); 
 
+  cy.get('#character').click();
+  cy.get('#FIFTHBROTHER').click();
   cy.get('#current-level').click();
   cy.get('#10').click();
   cy.get('#target-level').click();
@@ -28,6 +30,8 @@ it('Calculate cost for current level of 1 and target level of 50', () => {
     
   cy.visit('/', { timeout: 45000 }); 
   
+  cy.get('#character').click();
+  cy.get('#PADMEAMIDALA').click();
   cy.get('#current-level').click();
   cy.get('#1').click();
   cy.get('#target-level').click();
@@ -42,6 +46,8 @@ it('Calculate cost for current level of 80 and target level of 85', () => {
     
   cy.visit('/', { timeout: 45000 }); 
   
+  cy.get('#character').click();
+  cy.get('#STORMTROOPERHAN').click();
   cy.get('#current-level').click();
   cy.get('#80').click();
   cy.get('#target-level').click();
