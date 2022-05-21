@@ -15,8 +15,16 @@ const useStyles = makeStyles((theme) => ({
   calculatorCard: {
     display: 'inline-block',
     margin: theme.spacing(2),
-    minWidth: '45vw',
-    maxWidth: '90vw'
+    maxWidth: '90vw',
+    [theme.breakpoints.down('sm')]: {
+      width: '90vw'
+    },
+    [theme.breakpoints.up('md')]: {
+      minWidth: '65vw'
+    },
+    [theme.breakpoints.up('lg')]: {
+      minWidth: '45vw'
+    }
   },
   calculatorCardHeader: {
     textAlign: 'center'
