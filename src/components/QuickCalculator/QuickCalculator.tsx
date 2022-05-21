@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
-import axios from 'axios';
 import numeral from 'numeral';
 import * as R from 'ramda';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { changeCurrentCharacter, changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
 import { hydrateUnitsList } from '../../features/UnitsSlice';
+import api from '../../services/Axios';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
 import { CalculatorTotal, CharacterCalculator, LabelsBar } from '../index';
@@ -46,7 +46,7 @@ const QuickCalculator: React.FC = () => {
 
   const loadUnitsList = async () => {
     setIsLoading(true);
-    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URI}/units`);
+    const response = await api.get('/units');
     const unitsList: Record<string, string> = response.data;
   
     dispatch(hydrateUnitsList(unitsList));
