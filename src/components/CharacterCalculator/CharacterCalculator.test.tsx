@@ -10,7 +10,8 @@ describe('CharacterCalculator component', () => {
       currentCharacter: 'Test Character',
       unitsList: {},
       currentLevel: 1,
-      targetLevel: 85
+      targetLevel: 85,
+      isLoading: false
     };
       
     render(
@@ -20,6 +21,7 @@ describe('CharacterCalculator component', () => {
         handleCurrentLevelChange={mockHandleChange}
         handleTargetLevelChange={mockHandleChange}
         handleUnitChange={mockHandleChange}
+        isLoading={mockProps.isLoading}
         targetLevel={mockProps.targetLevel}
         unitsList={mockProps.unitsList}
       />
