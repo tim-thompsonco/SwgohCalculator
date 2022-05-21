@@ -1,5 +1,4 @@
-import { Card, CardContent, CardHeader, CircularProgress, makeStyles, Typography } from '@material-ui/core';
-import axios from 'axios';
+import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import numeral from 'numeral';
 import * as R from 'ramda';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { changeCurrentCharacter, changeCurrentLevel, changeTargetLevel } from '../../features/QuickCalculatorSlice';
 import { hydrateUnitsList } from '../../features/UnitsSlice';
+import api from '../../services/Axios';
 import { logGoogleAnalyticsEvent, logGoogleAnalyticsPageView } from '../../services/GoogleAnalyticsTracker';
 import { RootState } from '../../store';
 import { CalculatorTotal, CharacterCalculator, LabelsBar } from '../index';
@@ -20,11 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   calculatorCardHeader: {
     textAlign: 'center'
-  },
-  spinner: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing(2, 0, 0)
   }
 }));
 
@@ -51,7 +46,7 @@ const QuickCalculator: React.FC = () => {
 
   const loadUnitsList = async () => {
     setIsLoading(true);
-    const response = await axios.get('https://swgohcalculatorapi-qa.herokuapp.com/units');
+    const response = await api.get('/units');
     const unitsList: Record<string, string> = response.data;
   
     dispatch(hydrateUnitsList(unitsList));
@@ -86,10 +81,7 @@ const QuickCalculator: React.FC = () => {
     logGoogleAnalyticsEvent('Quick Calculator', `Unit Changed to ${unit}`, 'User Interaction');
   };
 
-  return isLoading ? 
-    <div className={classes.spinner}>
-      <CircularProgress color={'secondary'} />
-    </div> : 
+  return (
     <Card className={classes.calculatorCard}>
       <CardHeader
         className={classes.calculatorCardHeader}
@@ -105,6 +97,7 @@ const QuickCalculator: React.FC = () => {
           handleCurrentLevelChange={handleCurrentLevelChange}
           handleTargetLevelChange={handleTargetLevelChange}
           handleUnitChange={handleUnitChange}
+          isLoading={isLoading}
           targetLevel={targetLevel}
           unitsList={unitsList}
         />
@@ -114,7 +107,8 @@ const QuickCalculator: React.FC = () => {
         />
         {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };
 
 export default QuickCalculator;
