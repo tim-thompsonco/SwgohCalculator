@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import numeral from 'numeral';
 import * as R from 'ramda';
@@ -20,11 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   calculatorCardHeader: {
     textAlign: 'center'
-  },
-  spinner: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing(2, 0, 0)
   }
 }));
 
@@ -86,10 +81,7 @@ const QuickCalculator: React.FC = () => {
     logGoogleAnalyticsEvent('Quick Calculator', `Unit Changed to ${unit}`, 'User Interaction');
   };
 
-  return isLoading ? 
-    <div className={classes.spinner}>
-      <CircularProgress color={'secondary'} />
-    </div> : 
+  return (
     <Card className={classes.calculatorCard}>
       <CardHeader
         className={classes.calculatorCardHeader}
@@ -105,6 +97,7 @@ const QuickCalculator: React.FC = () => {
           handleCurrentLevelChange={handleCurrentLevelChange}
           handleTargetLevelChange={handleTargetLevelChange}
           handleUnitChange={handleUnitChange}
+          isLoading={isLoading}
           targetLevel={targetLevel}
           unitsList={unitsList}
         />
@@ -114,7 +107,8 @@ const QuickCalculator: React.FC = () => {
         />
         {errorMessage.length ? <Typography>{errorMessage}</Typography> : null}
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };
 
 export default QuickCalculator;
