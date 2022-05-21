@@ -15,7 +15,7 @@ const CalculatorTotal: React.FC<ICalculatorTotalProps> = ({ totalCostLabel, tota
         </Typography>
       </Grid>
       <Grid item sm={3} xs={4}>
-        <Typography variant={'h5'}>
+        <Typography align={'right'} variant={'h5'}>
           {totalCostFormattedValue}
         </Typography>
       </Grid>
