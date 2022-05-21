@@ -46,7 +46,7 @@ const QuickCalculator: React.FC = () => {
 
   const loadUnitsList = async () => {
     setIsLoading(true);
-    const response = await axios.get('https://swgohcalculatorapi-qa.herokuapp.com/units');
+    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URI}/units`);
     const unitsList: Record<string, string> = response.data;
   
     dispatch(hydrateUnitsList(unitsList));
