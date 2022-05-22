@@ -35,7 +35,7 @@ const AllyCode: React.FC = () => {
 
   return (
     <Grid className={classes.root} container spacing={2}>
-      <Grid item xs={8}>
+      <Grid item xs={6}>
         <TextField
           id={'AllyCodeTextField'}
           onChange={changeAllyCode}
@@ -44,7 +44,7 @@ const AllyCode: React.FC = () => {
           variant={'outlined'}
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         {isLoading ?
           <CircularProgress color={'secondary'} />
           :
